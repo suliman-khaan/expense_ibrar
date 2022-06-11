@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:expense/src/resources/theme_provider.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
