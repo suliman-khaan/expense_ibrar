@@ -1,4 +1,6 @@
+import 'package:expense/src/pages/app.dart';
 import 'package:expense/src/pages/home.dart';
+import 'package:expense/src/pages/profile.dart';
 import 'package:flutter/material.dart';
 
 import 'src/resources/theme_provider.dart';
@@ -15,12 +17,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      initialRoute: 'home',
+      initialRoute: 'index',
       routes: {
+        'index': (context) => const App(), //Start Page
         'home': (context) => const Home(),
+        'profile': (context) => const Profile(),
       },
     );
   }
