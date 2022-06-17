@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +11,15 @@ class _HomeState extends State<Home> {
   final Color color1 = const Color.fromRGBO(124, 220, 149, 1);
   final Color color2 = const Color.fromRGBO(33, 207, 184, 1);
   final Color backgroundColor = const Color.fromRGBO(241, 240, 246, 1);
+  List<Icon> icons = const [
+    Icon(CupertinoIcons.bag),
+    Icon(CupertinoIcons.bus),
+    Icon(CupertinoIcons.building_2_fill),
+    Icon(CupertinoIcons.flame),
+    Icon(CupertinoIcons.gift),
+    Icon(CupertinoIcons.hammer),
+    Icon(CupertinoIcons.hare),
+  ];
 
   // List<IconData> iconItems = ;
   Container circle() {
@@ -75,7 +85,7 @@ class _HomeState extends State<Home> {
                   top: 50,
                   left: 15,
                   child: CircleAvatar(
-                    backgroundColor: Colors.amber,
+                    backgroundImage: AssetImage('assets/profile.jpg'),
                   ),
                 ),
 
@@ -164,15 +174,13 @@ class _HomeState extends State<Home> {
                           spacing: 10,
                           children: [
                             Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
+                              height: 40,
+                              width: 40,
+                              decoration: const BoxDecoration(
                                 color: Colors.amber,
                                 shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage("assets/e5_$index.png"),
-                                ),
                               ),
+                              child: icons[index],
                             ),
                             Text(
                               "-150.52",
@@ -219,7 +227,8 @@ class _HomeState extends State<Home> {
 
           // 6) Scrolling calendar
           SliverPadding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding:
+                const EdgeInsets.only(bottom: 8.0, left: 20.0, right: 20.0),
             sliver: SliverToBoxAdapter(
               child: SizedBox(
                 height: 60,
@@ -234,7 +243,7 @@ class _HomeState extends State<Home> {
                           Text(
                             (index + 1).toString(),
                             style: TextStyle(
-                              color: Colors.grey.shade500,
+                              color: Colors.grey.shade800,
                             ),
                           ),
                           Text(
@@ -267,7 +276,7 @@ class _HomeState extends State<Home> {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   return Container(
-                    margin: const EdgeInsets.only(bottom: 1),
+                    margin: const EdgeInsets.only(bottom: 5.0),
                     padding: const EdgeInsets.all(10),
                     height: 80,
                     decoration: BoxDecoration(
@@ -279,19 +288,15 @@ class _HomeState extends State<Home> {
                         Container(
                           height: 40,
                           width: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage("assets/e5_$index.png"),
-                            ),
-                          ),
+                          decoration: const BoxDecoration(
+                              color: Colors.amber, shape: BoxShape.circle),
+                          child: icons[index],
                         ),
                         const SizedBox(width: 10),
-                        const Expanded(
+                        Expanded(
                           child: Text(
-                            "Craftwork",
-                            style: TextStyle(
+                            "History ${index + 1}".toString(),
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               color: Colors.grey,

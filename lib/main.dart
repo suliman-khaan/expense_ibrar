@@ -1,3 +1,4 @@
+import 'package:expense/src/pages/add_expense.dart';
 import 'package:expense/src/pages/app.dart';
 import 'package:expense/src/pages/home.dart';
 import 'package:expense/src/pages/profile.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         'index': (context) => const App(), //Start Page
         'home': (context) => const Home(),
         'profile': (context) => const Profile(),
+        'add-expense': (context) => const AddExpense(),
       },
     );
   }
