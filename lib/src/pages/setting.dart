@@ -63,7 +63,7 @@ class _SettingState extends State<Setting> {
   List<CurrencyPicker> testercurrency = <CurrencyPicker>[];
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+    // ignore: todo
     super.didChangeDependencies();
     currency();
     testercurrency
@@ -211,7 +211,7 @@ class _SettingState extends State<Setting> {
             contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title: const Text("Income Management",
                 style: TextStyle(fontWeight: FontWeight.w500)),
-            subtitle: Text("Income management is ${enableorDisable}"),
+            subtitle: Text("Income management is $enableorDisable"),
             trailing: Checkbox(
                 value: isCheckedManagement,
                 onChanged: (value) {
@@ -382,7 +382,6 @@ class _SettingState extends State<Setting> {
           PopupMenuButton<int>(
               onSelected: (item) => _onSelected(context, item),
               itemBuilder: (context) =>
-                  // ignore: prefer_const_constructors
                   [
                     PopupMenuItem<int>(value: 0, child: const Text("Setting")),
                     PopupMenuItem<int>(value: 1, child: const Text("more"))
@@ -427,295 +426,300 @@ class _SettingState extends State<Setting> {
         context: context,
         builder: (context) {
           return StatefulBuilder(builder: (context, setState) {
-            return AlertDialog(
-              actionsPadding: EdgeInsets.only(bottom: 20),
-              title: const Text("Currency"),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "CANCEL",
-                    style: TextStyle(color: Colors.green),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "OK",
-                    style: TextStyle(color: Colors.green),
-                  ),
-                )
-              ],
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[0].selectedCurrency =
-                                  !testercurrency[0].selectedCurrency;
-                              testercurrency[1].selectedCurrency = false;
-                              testercurrency[2].selectedCurrency = false;
-                              testercurrency[3].selectedCurrency = false;
-                              testercurrency[4].selectedCurrency = false;
-                              testercurrency[5].selectedCurrency = false;
-                              testercurrency[6].selectedCurrency = false;
-                              testercurrency[7].selectedCurrency = false;
-                              a = testercurrency[0].countrySymbol;
-                            });
-                            // testercurrency[0].selectedCurrency = true;
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[0]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          child: Text(
-                            testercurrency[0].countrySymbol,
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                          )),
-                      TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[1]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[1].selectedCurrency =
-                                  !testercurrency[1].selectedCurrency;
-                              testercurrency[0].selectedCurrency = false;
-                              testercurrency[2].selectedCurrency = false;
-                              testercurrency[3].selectedCurrency = false;
-                              testercurrency[4].selectedCurrency = false;
-                              testercurrency[5].selectedCurrency = false;
-                              testercurrency[6].selectedCurrency = false;
-                              testercurrency[7].selectedCurrency = false;
-                              a = testercurrency[1].countrySymbol;
-                              print(a);
-                            });
-                          },
-                          child: Text(testercurrency[1].countrySymbol,
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18))),
-                      TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[2]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[2].selectedCurrency =
-                                  !testercurrency[2].selectedCurrency;
-                              testercurrency[1].selectedCurrency = false;
-                              testercurrency[0].selectedCurrency = false;
-                              testercurrency[3].selectedCurrency = false;
-                              testercurrency[4].selectedCurrency = false;
-                              testercurrency[5].selectedCurrency = false;
-                              testercurrency[6].selectedCurrency = false;
-                              testercurrency[7].selectedCurrency = false;
-                              a = testercurrency[2].countrySymbol;
-                              print(a);
-                            });
-                          },
-                          child: Text(testercurrency[2].countrySymbol,
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18))),
-                      TextButton(
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[3]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[3].selectedCurrency =
-                                  !testercurrency[3].selectedCurrency;
-                              testercurrency[1].selectedCurrency = false;
-                              testercurrency[0].selectedCurrency = false;
-                              testercurrency[2].selectedCurrency = false;
-                              testercurrency[4].selectedCurrency = false;
-                              testercurrency[5].selectedCurrency = false;
-                              testercurrency[6].selectedCurrency = false;
-                              testercurrency[7].selectedCurrency = false;
-                              a = testercurrency[3].countrySymbol;
-                              print(a);
-                            });
-                          },
-                          child: Text(testercurrency[3].countrySymbol,
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 18))),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[4].selectedCurrency =
-                                  !testercurrency[4].selectedCurrency;
-                              testercurrency[1].selectedCurrency = false;
-                              testercurrency[0].selectedCurrency = false;
-                              testercurrency[5].selectedCurrency = false;
-                              testercurrency[2].selectedCurrency = false;
-                              testercurrency[3].selectedCurrency = false;
-                              testercurrency[6].selectedCurrency = false;
-                              testercurrency[7].selectedCurrency = false;
-                              a = testercurrency[4].countrySymbol;
-                              print(a);
-                            });
-                            // testercurrency[0].selectedCurrency = true;
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[4]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          child: Text(
-                            testercurrency[4].countrySymbol,
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[5].selectedCurrency =
-                                  !testercurrency[5].selectedCurrency;
-                              testercurrency[1].selectedCurrency = false;
-                              testercurrency[0].selectedCurrency = false;
-                              testercurrency[4].selectedCurrency = false;
-                              testercurrency[6].selectedCurrency = false;
-                              testercurrency[2].selectedCurrency = false;
-                              testercurrency[3].selectedCurrency = false;
-                              testercurrency[7].selectedCurrency = false;
-                              a = testercurrency[3].countrySymbol;
-                              print(a);
-                            });
-                            // testercurrency[0].selectedCurrency = true;
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[5]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          child: Text(
-                            testercurrency[5].countrySymbol,
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[6].selectedCurrency =
-                                  !testercurrency[6].selectedCurrency;
-                              testercurrency[1].selectedCurrency = false;
-                              testercurrency[0].selectedCurrency = false;
-                              testercurrency[4].selectedCurrency = false;
-                              testercurrency[5].selectedCurrency = false;
-                              testercurrency[2].selectedCurrency = false;
-                              testercurrency[3].selectedCurrency = false;
-                              testercurrency[7].selectedCurrency = false;
-                              a = testercurrency[6].countrySymbol;
-                              print(a);
-                            });
-                            // testercurrency[0].selectedCurrency = true;
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[6]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          child: Text(
-                            testercurrency[6].countrySymbol,
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              testercurrency[7].selectedCurrency =
-                                  !testercurrency[7].selectedCurrency;
-                              testercurrency[1].selectedCurrency = false;
-                              testercurrency[0].selectedCurrency = false;
-                              testercurrency[4].selectedCurrency = false;
-                              testercurrency[5].selectedCurrency = false;
-                              testercurrency[2].selectedCurrency = false;
-                              testercurrency[3].selectedCurrency = false;
-                              testercurrency[6].selectedCurrency = false;
-                              a = testercurrency[7].countrySymbol;
-                              print(a);
-                            });
-                            // testercurrency[0].selectedCurrency = true;
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: testercurrency[7]
-                                      .selectedCurrency
-                                  ? MaterialStateProperty.all<Color>(Colors.red)
-                                  : MaterialStateProperty.all<Color>(
-                                      Colors.transparent)),
-                          child: Text(
-                            testercurrency[7].countrySymbol,
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                          )),
-                    ],
-                  ),
-                  TextField(
-                    onChanged: (text) {
-                      setState(() {
-                        a = text;
-                        testercurrency[1].selectedCurrency = false;
-                        testercurrency[0].selectedCurrency = false;
-                        testercurrency[4].selectedCurrency = false;
-                        testercurrency[5].selectedCurrency = false;
-                        testercurrency[2].selectedCurrency = false;
-                        testercurrency[3].selectedCurrency = false;
-                        testercurrency[6].selectedCurrency = false;
-                        testercurrency[7].selectedCurrency = false;
-                      });
+            return SingleChildScrollView(
+              child: AlertDialog(
+                actionsPadding: EdgeInsets.only(bottom: 20),
+                title: const Text("Currency"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
                     },
-                    decoration:
-                        InputDecoration(hintText: "Enter Your Custom Currency"),
+                    child: Text(
+                      "CANCEL",
+                      style: TextStyle(color: Colors.green),
+                    ),
                   ),
-                  SizedBox(height: 20),
-                  CheckboxListTile(
-                    contentPadding: EdgeInsets.zero,
-                    controlAffinity: ListTileControlAffinity.leading,
-                    value: isCheckboxtile1,
-                    onChanged: (value) {
-                      setState(() {
-                        isCheckboxtile1 = value!;
-                      });
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
                     },
-                    title: Text("Currency symbol is written before amount"),
-                  ),
-                  CheckboxListTile(
-                    contentPadding: EdgeInsets.zero,
-                    controlAffinity: ListTileControlAffinity.leading,
-                    value: isCheckboxtile2,
-                    onChanged: (value) {
-                      setState(() {
-                        isCheckboxtile2 = value!;
-                      });
-                    },
-                    title: Text("Currency uses decimals"),
-                  ),
+                    child: Text(
+                      "OK",
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  )
                 ],
+                content: Column(
+                  children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[0].selectedCurrency =
+                                      !testercurrency[0].selectedCurrency;
+                                  testercurrency[1].selectedCurrency = false;
+                                  testercurrency[2].selectedCurrency = false;
+                                  testercurrency[3].selectedCurrency = false;
+                                  testercurrency[4].selectedCurrency = false;
+                                  testercurrency[5].selectedCurrency = false;
+                                  testercurrency[6].selectedCurrency = false;
+                                  testercurrency[7].selectedCurrency = false;
+                                  a = testercurrency[0].countrySymbol;
+                                });
+                                // testercurrency[0].selectedCurrency = true;
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[0]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              child: Text(
+                                testercurrency[0].countrySymbol,
+                                style: TextStyle(color: Colors.black, fontSize: 16),
+                              )),
+                          TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[1]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[1].selectedCurrency =
+                                      !testercurrency[1].selectedCurrency;
+                                  testercurrency[0].selectedCurrency = false;
+                                  testercurrency[2].selectedCurrency = false;
+                                  testercurrency[3].selectedCurrency = false;
+                                  testercurrency[4].selectedCurrency = false;
+                                  testercurrency[5].selectedCurrency = false;
+                                  testercurrency[6].selectedCurrency = false;
+                                  testercurrency[7].selectedCurrency = false;
+                                  a = testercurrency[1].countrySymbol;
+                                  print(a);
+                                });
+                              },
+                              child: Text(testercurrency[1].countrySymbol,
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16))),
+                          TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[2]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[2].selectedCurrency =
+                                      !testercurrency[2].selectedCurrency;
+                                  testercurrency[1].selectedCurrency = false;
+                                  testercurrency[0].selectedCurrency = false;
+                                  testercurrency[3].selectedCurrency = false;
+                                  testercurrency[4].selectedCurrency = false;
+                                  testercurrency[5].selectedCurrency = false;
+                                  testercurrency[6].selectedCurrency = false;
+                                  testercurrency[7].selectedCurrency = false;
+                                  a = testercurrency[2].countrySymbol;
+                                  print(a);
+                                });
+                              },
+                              child: Text(testercurrency[2].countrySymbol,
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16))),
+                          TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[3]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[3].selectedCurrency =
+                                      !testercurrency[3].selectedCurrency;
+                                  testercurrency[1].selectedCurrency = false;
+                                  testercurrency[0].selectedCurrency = false;
+                                  testercurrency[2].selectedCurrency = false;
+                                  testercurrency[4].selectedCurrency = false;
+                                  testercurrency[5].selectedCurrency = false;
+                                  testercurrency[6].selectedCurrency = false;
+                                  testercurrency[7].selectedCurrency = false;
+                                  a = testercurrency[3].countrySymbol;
+                                  print(a);
+                                });
+                              },
+                              child: Text(testercurrency[3].countrySymbol,
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16))),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[4].selectedCurrency =
+                                      !testercurrency[4].selectedCurrency;
+                                  testercurrency[1].selectedCurrency = false;
+                                  testercurrency[0].selectedCurrency = false;
+                                  testercurrency[5].selectedCurrency = false;
+                                  testercurrency[2].selectedCurrency = false;
+                                  testercurrency[3].selectedCurrency = false;
+                                  testercurrency[6].selectedCurrency = false;
+                                  testercurrency[7].selectedCurrency = false;
+                                  a = testercurrency[4].countrySymbol;
+                                  print(a);
+                                });
+                                // testercurrency[0].selectedCurrency = true;
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[4]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              child: Text(
+                                testercurrency[4].countrySymbol,
+                                style: TextStyle(color: Colors.black, fontSize: 16),
+                              )),
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[5].selectedCurrency =
+                                      !testercurrency[5].selectedCurrency;
+                                  testercurrency[1].selectedCurrency = false;
+                                  testercurrency[0].selectedCurrency = false;
+                                  testercurrency[4].selectedCurrency = false;
+                                  testercurrency[6].selectedCurrency = false;
+                                  testercurrency[2].selectedCurrency = false;
+                                  testercurrency[3].selectedCurrency = false;
+                                  testercurrency[7].selectedCurrency = false;
+                                  a = testercurrency[3].countrySymbol;
+                                  print(a);
+                                });
+                                // testercurrency[0].selectedCurrency = true;
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[5]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              child: Text(
+                                testercurrency[5].countrySymbol,
+                                style: TextStyle(color: Colors.black, fontSize: 16),
+                              )),
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[6].selectedCurrency =
+                                      !testercurrency[6].selectedCurrency;
+                                  testercurrency[1].selectedCurrency = false;
+                                  testercurrency[0].selectedCurrency = false;
+                                  testercurrency[4].selectedCurrency = false;
+                                  testercurrency[5].selectedCurrency = false;
+                                  testercurrency[2].selectedCurrency = false;
+                                  testercurrency[3].selectedCurrency = false;
+                                  testercurrency[7].selectedCurrency = false;
+                                  a = testercurrency[6].countrySymbol;
+                                  print(a);
+                                });
+                                // testercurrency[0].selectedCurrency = true;
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[6]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              child: Text(
+                                testercurrency[6].countrySymbol,
+                                style: TextStyle(color: Colors.black, fontSize: 16),
+                              )),
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  testercurrency[7].selectedCurrency =
+                                      !testercurrency[7].selectedCurrency;
+                                  testercurrency[1].selectedCurrency = false;
+                                  testercurrency[0].selectedCurrency = false;
+                                  testercurrency[4].selectedCurrency = false;
+                                  testercurrency[5].selectedCurrency = false;
+                                  testercurrency[2].selectedCurrency = false;
+                                  testercurrency[3].selectedCurrency = false;
+                                  testercurrency[6].selectedCurrency = false;
+                                  a = testercurrency[7].countrySymbol;
+                                  print(a);
+                                });
+                                // testercurrency[0].selectedCurrency = true;
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: testercurrency[7]
+                                          .selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              child: Text(
+                                testercurrency[7].countrySymbol,
+                                style: TextStyle(color: Colors.black, fontSize: 16),
+                              )),
+                        ],
+                      ),
+                    ),
+                    TextField(
+                      onChanged: (text) {
+                        setState(() {
+                          a = text;
+                          testercurrency[1].selectedCurrency = false;
+                          testercurrency[0].selectedCurrency = false;
+                          testercurrency[4].selectedCurrency = false;
+                          testercurrency[5].selectedCurrency = false;
+                          testercurrency[2].selectedCurrency = false;
+                          testercurrency[3].selectedCurrency = false;
+                          testercurrency[6].selectedCurrency = false;
+                          testercurrency[7].selectedCurrency = false;
+                        });
+                      },
+                      decoration:
+                          InputDecoration(hintText: "Enter Your Custom Currency"),
+                    ),
+                    SizedBox(height: 20),
+                    CheckboxListTile(
+                      contentPadding: EdgeInsets.zero,
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: isCheckboxtile1,
+                      onChanged: (value) {
+                        setState(() {
+                          isCheckboxtile1 = value!;
+                        });
+                      },
+                      title: Text("Currency symbol is written before amount"),
+                    ),
+                    CheckboxListTile(
+                      contentPadding: EdgeInsets.zero,
+                      controlAffinity: ListTileControlAffinity.leading,
+                      value: isCheckboxtile2,
+                      onChanged: (value) {
+                        setState(() {
+                          isCheckboxtile2 = value!;
+                        });
+                      },
+                      title: Text("Currency uses decimals"),
+                    ),
+                  ],
+                ),
               ),
             );
           });
