@@ -1,7 +1,7 @@
-import 'package:expense/src/pages/add_expense.dart';
 import 'package:expense/src/pages/app.dart';
 import 'package:expense/src/pages/home.dart';
 import 'package:expense/src/pages/profile.dart';
+import 'package:expense/src/pages/setting.dart';
 import 'package:flutter/material.dart';
 
 import 'src/resources/theme_provider.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         'index': (context) => const App(), //Start Page
         'home': (context) => const Home(),
         'profile': (context) => const Profile(),
-        'add-expense': (context) => const AddExpense(),
+        'setting': (context) => const Setting(),
       },
     );
   }
