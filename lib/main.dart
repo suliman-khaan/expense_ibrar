@@ -1,6 +1,7 @@
 import 'package:expense/src/pages/app.dart';
 import 'package:expense/src/pages/home.dart';
 import 'package:expense/src/pages/profile.dart';
+import 'package:expense/src/pages/setting.dart';
 import 'package:flutter/material.dart';
 
 import 'src/resources/theme_provider.dart';
@@ -20,11 +21,12 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      initialRoute: 'index',
+      initialRoute: 'setting',
       routes: {
         'index': (context) => const App(), //Start Page
         'home': (context) => const Home(),
         'profile': (context) => const Profile(),
+        'setting': (context) => const Setting(),
       },
     );
   }
