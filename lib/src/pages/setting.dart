@@ -107,34 +107,28 @@ class _SettingState extends State<Setting> {
             "General",
             style: TextStyle(color: Colors.green),
           ),
-          GestureDetector(
-            onTap: () {
-              print("you just clicked the theme data");
-            },
-            child: const ListTile(
-              contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+             ListTile(
+              onTap: () {
+                
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
               title: Text(
                 "Theme",
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               subtitle: Text("light"),
             ),
-          ),
-          TextButton(
-            style: TextButton.styleFrom(padding: EdgeInsets.zero),
-            child: const Text(
-              "Currency",
-              style: TextStyle(color: Colors.black),
+          ListTile(
+              onTap:() async {
+                await showInformationDialog(context);
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Currency",
+              style: TextStyle(fontWeight: FontWeight.w500),
+              ),
             ),
-            onPressed: () async {
-              currency();
-              print("--- : ------" + testercurrency[0].countrySymbol);
-              await showInformationDialog(context);
-              // openDialog();
-            },
-          ),
           const ListTile(
-            contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title:
                 Text("Grouping", style: TextStyle(fontWeight: FontWeight.w500)),
             subtitle: Text("Month"),
@@ -155,36 +149,33 @@ class _SettingState extends State<Setting> {
             "Manage",
             style: TextStyle(color: Colors.green),
           ),
-          // const ListTile(
-          //   contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
-          //   title: Text("Theme",style: TextStyle(fontWeight: FontWeight.w500),),
-          //   subtitle: Text("light"),
-          // ),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "Categories",
-                style: TextStyle(color: Colors.black),
+          ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Categories",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {
-                // currency();
-              }),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "Regular Expenses and Income",
-                style: TextStyle(color: Colors.black),
+            ),
+              ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Regular Expenses and Income",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {}),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "Backup/Restore your data",
-                style: TextStyle(color: Colors.black),
+            ),
+            ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Backup/Restore your data",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {}),
-          const ListTile(
-            contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+            ),
+           ListTile(
+            onTap: (){},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title: Text("Spreadsheet export",
                 style: TextStyle(fontWeight: FontWeight.w500)),
             subtitle: Text("Export your record to a spreadsheet."),
@@ -207,7 +198,17 @@ class _SettingState extends State<Setting> {
             style: TextStyle(color: Colors.green),
           ),
           ListTile(
-            contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+            onTap: (){
+              setState(() {
+                isCheckedManagement = !isCheckedManagement;
+                    if (isCheckedManagement == true) {
+                      enableorDisable = "Enable";
+                    } else {
+                      enableorDisable = "Disable";
+                    }
+              });
+            },
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title: const Text("Income Management",
                 style: TextStyle(fontWeight: FontWeight.w500)),
             subtitle: Text("Income management is ${enableorDisable}"),
@@ -225,7 +226,13 @@ class _SettingState extends State<Setting> {
                 }),
           ),
           ListTile(
-            contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+            onTap: (){
+              setState(() {
+                isCheckedExpenses = !isCheckedExpenses;
+              });
+              
+            },
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             enabled: isCheckedManagement,
             title: const Text("Carry over expenses",
                 style: TextStyle(fontWeight: FontWeight.w500)),
@@ -258,7 +265,12 @@ class _SettingState extends State<Setting> {
             style: TextStyle(color: Colors.green),
           ),
           ListTile(
-            contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+            onTap: (){
+              setState(() {
+                isDailyReminderOn = !isDailyReminderOn;
+              });
+            },
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title: const Text("Daily Reminder",
                 style: TextStyle(fontWeight: FontWeight.w500)),
             trailing: Checkbox(
@@ -270,13 +282,18 @@ class _SettingState extends State<Setting> {
                 }),
           ),
           ListTile(
-            contentPadding: const EdgeInsets.all(0),
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             enabled: isDailyReminderOn,
             title: const Text("Time of day"),
             subtitle: const Text("18:00"),
           ),
           ListTile(
-            contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+            onTap: (){
+              setState(() {
+                isSmartReminderOn = !isSmartReminderOn;
+              });
+            },
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             enabled: isDailyReminderOn,
             title: const Text("Smart reminder",
                 style: TextStyle(fontWeight: FontWeight.w500)),
@@ -309,41 +326,46 @@ class _SettingState extends State<Setting> {
             "About",
             style: TextStyle(color: Colors.green),
           ),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "Rate app",
-                style: TextStyle(color: Colors.black),
+          ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Rate App",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {}),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "Quick Start",
-                style: TextStyle(color: Colors.black),
+            ),
+          ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Quick Start",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {}),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "About Us",
-                style: TextStyle(color: Colors.black),
+            ),
+          ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("About Us",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {}),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "Promotion Code",
-                style: TextStyle(color: Colors.black),
+            ),
+          ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Promotion Code",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {}),
-          TextButton(
-              style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              child: const Text(
-                "Open Source License",
-                style: TextStyle(color: Colors.black),
+            ),
+          ListTile(
+              onTap:(){
+              },
+              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+              title: Text("Open Source License",
+              style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              onPressed: () {}),
+            ),
         ],
       ),
     );
@@ -352,6 +374,10 @@ class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+    icon: Icon(Icons.arrow_back, color: Colors.white),
+    onPressed: () => Navigator.of(context).pop(),
+  ), 
         actions: [
           PopupMenuButton<int>(
               onSelected: (item) => _onSelected(context, item),
@@ -378,43 +404,6 @@ class _SettingState extends State<Setting> {
           forAbout()
         ],
       ))
-      /* SafeArea(child:ListView(
-      padding: EdgeInsets.all(24),
-      children: [
-        SettingsGroup(
-          settingsGroupTitleStyle: TextStyle(color: Colors.green),
-          settingsGroupTitle:'GENERAL',
-          items: <SettingsItem>[
-            SettingsItem(
-            onTap: () {},
-            iconStyle: IconStyle(),
-            title: 'Appearance',
-            subtitle: "Make Ziar'App yours",
-          ),
-          SettingsItem(
-            onTap: () {},
-            icons: Icons.dark_mode_rounded,
-            iconStyle: IconStyle(
-              iconsColor: Colors.white,
-              withBackground: true,
-              backgroundColor: Colors.red,
-            ),
-            title: 'Dark mode',
-            subtitle: "Automatic",
-            trailing: Switch.adaptive(
-              value: false,
-              onChanged: (value) {},
-            ),
-          ),
-            buildLogout(),
-            buildDelete(),
-            
-          ],
-        )
-      ],
-    )
-    ),
-    */
       );
 
   _onSelected(BuildContext context, int item) {

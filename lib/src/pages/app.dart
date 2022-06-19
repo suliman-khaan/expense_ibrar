@@ -51,10 +51,35 @@ class _AppState extends State<App> {
     note.text = '';
     date.text = '';
   }
+  // top menu button 
+  _onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+      Navigator.pushNamed(context, "setting");
+        break;
+      case 1:
+        print("you clicked more");
+        break;
+      default:
+        print("went someting wrong");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          PopupMenuButton<int>(
+              onSelected: (item) => _onSelected(context, item),
+              itemBuilder: (context) =>
+                  // ignore: prefer_const_constructors
+                  [
+                    PopupMenuItem<int>(value: 0, child: const Text("Setting")),
+                    PopupMenuItem<int>(value: 1, child: const Text("more"))
+                  ])
+        ],
+      ),
         extendBody: true,
         body: pages[pageIndex],
         bottomNavigationBar: AnimatedBottomNavigationBar(

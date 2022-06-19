@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      initialRoute: 'setting',
+      initialRoute: 'index',
       routes: {
         'index': (context) => const App(), //Start Page
         'home': (context) => const Home(),
