@@ -107,26 +107,25 @@ class _SettingState extends State<Setting> {
             "General",
             style: TextStyle(color: Colors.green),
           ),
-             ListTile(
-              onTap: () {
-                
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text(
-                "Theme",
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
-              subtitle: Text("light"),
-            ),
           ListTile(
-              onTap:() async {
-                await showInformationDialog(context);
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Currency",
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Theme",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
+            subtitle: Text("light"),
+          ),
+          ListTile(
+            onTap: () async {
+              await showInformationDialog(context);
+            },
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Currency",
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ),
           const ListTile(
             contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title:
@@ -150,31 +149,31 @@ class _SettingState extends State<Setting> {
             style: TextStyle(color: Colors.green),
           ),
           ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Categories",
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Categories",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
-              ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Regular Expenses and Income",
+          ),
+          ListTile(
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Regular Expenses and Income",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
-            ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Backup/Restore your data",
+          ),
+          ListTile(
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Backup/Restore your data",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
-           ListTile(
-            onTap: (){},
+          ),
+          ListTile(
+            onTap: () {},
             contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title: Text("Spreadsheet export",
                 style: TextStyle(fontWeight: FontWeight.w500)),
@@ -198,14 +197,14 @@ class _SettingState extends State<Setting> {
             style: TextStyle(color: Colors.green),
           ),
           ListTile(
-            onTap: (){
+            onTap: () {
               setState(() {
                 isCheckedManagement = !isCheckedManagement;
-                    if (isCheckedManagement == true) {
-                      enableorDisable = "Enable";
-                    } else {
-                      enableorDisable = "Disable";
-                    }
+                if (isCheckedManagement == true) {
+                  enableorDisable = "Enable";
+                } else {
+                  enableorDisable = "Disable";
+                }
               });
             },
             contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
@@ -226,11 +225,10 @@ class _SettingState extends State<Setting> {
                 }),
           ),
           ListTile(
-            onTap: (){
+            onTap: () {
               setState(() {
                 isCheckedExpenses = !isCheckedExpenses;
               });
-              
             },
             contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             enabled: isCheckedManagement,
@@ -265,7 +263,7 @@ class _SettingState extends State<Setting> {
             style: TextStyle(color: Colors.green),
           ),
           ListTile(
-            onTap: (){
+            onTap: () {
               setState(() {
                 isDailyReminderOn = !isDailyReminderOn;
               });
@@ -288,7 +286,7 @@ class _SettingState extends State<Setting> {
             subtitle: const Text("18:00"),
           ),
           ListTile(
-            onTap: (){
+            onTap: () {
               setState(() {
                 isSmartReminderOn = !isSmartReminderOn;
               });
@@ -327,45 +325,45 @@ class _SettingState extends State<Setting> {
             style: TextStyle(color: Colors.green),
           ),
           ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Rate App",
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Rate App",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
+          ),
           ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Quick Start",
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Quick Start",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
+          ),
           ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("About Us",
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "About Us",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
+          ),
           ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Promotion Code",
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Promotion Code",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
+          ),
           ListTile(
-              onTap:(){
-              },
-              contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
-              title: Text("Open Source License",
+            onTap: () {},
+            contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
+            title: Text(
+              "Open Source License",
               style: TextStyle(fontWeight: FontWeight.w500),
-              ),
             ),
+          ),
         ],
       ),
     );
@@ -373,23 +371,23 @@ class _SettingState extends State<Setting> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-    icon: Icon(Icons.arrow_back, color: Colors.white),
-    onPressed: () => Navigator.of(context).pop(),
-  ), 
-        actions: [
-          PopupMenuButton<int>(
-              onSelected: (item) => _onSelected(context, item),
-              itemBuilder: (context) =>
-                  [
-                    PopupMenuItem<int>(value: 0, child: const Text("Setting")),
-                    PopupMenuItem<int>(value: 1, child: const Text("more"))
-                  ])
-        ],
-      ),
-      body: SafeArea(
-          child: ListView(
+          //     appBar: AppBar(
+          //       leading: IconButton(
+          //   icon: Icon(Icons.arrow_back, color: Colors.white),
+          //   onPressed: () => Navigator.of(context).pop(),
+          // ),
+          //       actions: [
+          //         PopupMenuButton<int>(
+          //             onSelected: (item) => _onSelected(context, item),
+          //             itemBuilder: (context) =>
+          //                 [
+          //                   PopupMenuItem<int>(value: 0, child: const Text("Setting")),
+          //                   PopupMenuItem<int>(value: 1, child: const Text("more"))
+          //                 ])
+          //       ],
+          //     ),
+          body: SafeArea(
+              child: ListView(
         children: [
           // for general
           forGeneral(),
@@ -402,8 +400,7 @@ class _SettingState extends State<Setting> {
           // for About
           forAbout()
         ],
-      ))
-      );
+      )));
 
   _onSelected(BuildContext context, int item) {
     switch (item) {
@@ -473,22 +470,25 @@ class _SettingState extends State<Setting> {
                                 // testercurrency[0].selectedCurrency = true;
                               },
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[0]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[0].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               child: Text(
                                 testercurrency[0].countrySymbol,
-                                style: TextStyle(color: Colors.black, fontSize: 16),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
                               )),
                           TextButton(
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[1]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[1].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               onPressed: () {
                                 setState(() {
                                   testercurrency[1].selectedCurrency =
@@ -509,11 +509,12 @@ class _SettingState extends State<Setting> {
                                       color: Colors.black, fontSize: 16))),
                           TextButton(
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[2]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[2].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               onPressed: () {
                                 setState(() {
                                   testercurrency[2].selectedCurrency =
@@ -534,11 +535,12 @@ class _SettingState extends State<Setting> {
                                       color: Colors.black, fontSize: 16))),
                           TextButton(
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[3]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[3].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               onPressed: () {
                                 setState(() {
                                   testercurrency[3].selectedCurrency =
@@ -585,14 +587,16 @@ class _SettingState extends State<Setting> {
                                 // testercurrency[0].selectedCurrency = true;
                               },
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[4]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[4].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               child: Text(
                                 testercurrency[4].countrySymbol,
-                                style: TextStyle(color: Colors.black, fontSize: 16),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
                               )),
                           TextButton(
                               onPressed: () {
@@ -612,14 +616,16 @@ class _SettingState extends State<Setting> {
                                 // testercurrency[0].selectedCurrency = true;
                               },
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[5]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[5].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               child: Text(
                                 testercurrency[5].countrySymbol,
-                                style: TextStyle(color: Colors.black, fontSize: 16),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
                               )),
                           TextButton(
                               onPressed: () {
@@ -639,14 +645,16 @@ class _SettingState extends State<Setting> {
                                 // testercurrency[0].selectedCurrency = true;
                               },
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[6]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[6].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               child: Text(
                                 testercurrency[6].countrySymbol,
-                                style: TextStyle(color: Colors.black, fontSize: 16),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
                               )),
                           TextButton(
                               onPressed: () {
@@ -666,14 +674,16 @@ class _SettingState extends State<Setting> {
                                 // testercurrency[0].selectedCurrency = true;
                               },
                               style: ButtonStyle(
-                                  backgroundColor: testercurrency[7]
-                                          .selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
+                                  backgroundColor:
+                                      testercurrency[7].selectedCurrency
+                                          ? MaterialStateProperty.all<Color>(
+                                              Colors.grey)
+                                          : MaterialStateProperty.all<Color>(
+                                              Colors.transparent)),
                               child: Text(
                                 testercurrency[7].countrySymbol,
-                                style: TextStyle(color: Colors.black, fontSize: 16),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
                               )),
                         ],
                       ),
@@ -692,8 +702,8 @@ class _SettingState extends State<Setting> {
                           testercurrency[7].selectedCurrency = false;
                         });
                       },
-                      decoration:
-                          InputDecoration(hintText: "Enter Your Custom Currency"),
+                      decoration: InputDecoration(
+                          hintText: "Enter Your Custom Currency"),
                     ),
                     SizedBox(height: 20),
                     CheckboxListTile(

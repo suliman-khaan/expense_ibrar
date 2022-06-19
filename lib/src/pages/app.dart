@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:expense/src/pages/setting.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:pattern_formatter/pattern_formatter.dart';
@@ -32,8 +33,7 @@ class _AppState extends State<App> {
     const Profile(),
     const Home(),
     const Profile(),
-    const Home(),
-    const Profile(),
+    const Setting(),
   ];
   final currency = TextEditingController();
   final note = TextEditingController();
@@ -66,11 +66,12 @@ class _AppState extends State<App> {
     note.text = '';
     date.text = '';
   }
-  // top menu button 
+
+  // top menu button
   _onSelected(BuildContext context, int item) {
     switch (item) {
       case 0:
-      Navigator.pushNamed(context, "setting");
+        Navigator.pushNamed(context, "setting");
         break;
       case 1:
         print("you clicked more");
@@ -83,18 +84,17 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          PopupMenuButton<int>(
-              onSelected: (item) => _onSelected(context, item),
-              itemBuilder: (context) =>
-                  // ignore: prefer_const_constructors
-                  [
-                    PopupMenuItem<int>(value: 0, child: const Text("Setting")),
-                    PopupMenuItem<int>(value: 1, child: const Text("more"))
-                  ])
-        ],
-      ),
+        // appBar: AppBar(
+        //   actions: [
+        //     PopupMenuButton<int>(
+        //         onSelected: (item) => _onSelected(context, item),
+        //         itemBuilder: (context) => [
+        //               const PopupMenuItem<int>(
+        //                   value: 0, child: Text("Setting")),
+        //               const PopupMenuItem<int>(value: 1, child: Text("more"))
+        //             ])
+        //   ],
+        // ),
         extendBody: true,
         body: pages[pageIndex],
         bottomNavigationBar: AnimatedBottomNavigationBar(
