@@ -26,20 +26,56 @@ class _AppState extends State<App> {
   ];
   final List<String> _greyMaterial = [
     'Bricks',
-    'Crish',
+    'Crush',
     'Sand',
     'Rori',
     'Kassis',
     'Electric Item',
     'Plumbing Item',
     'Earthware',
-    'Brick Tile'
+    'Brick Tile',
+    'AC Pipe',
+    'Bitumen',
+    'Polythene Sheet',
+    'Mud',
+    'Chips',
+    'Anti Termite',
+    'Boring',
+    'Guard Sal',
+    'Electric Bill',
+    'Taxes',
+    'Random'
   ];
   final List<String> _finishingMaterial = [
-    'Grey Structure Material',
-    'Finishing Work Items',
-    'Contractor',
-    'Item With Material'
+    'Electric Items',
+    'Wood Items',
+    'Tiles',
+    'Paint',
+    'Polish',
+    'San It Ary Items',
+    'Granite'
+  ];
+  final List<String> _contractor = [
+    'Labour Contact',
+    'Electric Contact',
+    'Plumbing Contact',
+    'Tile Contact',
+    'Painting Contact',
+    'Polish Contact',
+    'Steel Fixer'
+  ];
+  final List<String> _itemWithMaterial = [
+    'False Ceiling',
+    'Aluminum Windows',
+    'Railings',
+    'Saftey Grius',
+    'Man Gate',
+    'Steel Stairs',
+    'Wooden Floor',
+    'Wall Paper',
+    'Fire Plale',
+    'Other Items',
+    'Taxes'
   ];
   String? _selectCategory;
   String? _subSelectCategory;
@@ -54,11 +90,12 @@ class _AppState extends State<App> {
     const Profile(),
     const Setting(),
   ];
+  final _catForm = GlobalKey<FormState>();
   final currency = TextEditingController();
+  final quntity = TextEditingController()..text = '1';
   final note = TextEditingController();
   final date = TextEditingController();
   late FocusNode amountFocusNode;
-  final _catForm = GlobalKey<FormState>();
 
   bool isLoading = false;
 
@@ -183,7 +220,7 @@ class _AppState extends State<App> {
                     ),
                     const SizedBox(width: 50.0),
                     Text(
-                      "Add Expense",
+                      "Add Items",
                       style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w400, fontSize: 18.0),
                     )
@@ -195,44 +232,44 @@ class _AppState extends State<App> {
                   key: _catForm,
                   child: Column(
                     children: [
-                      // currency Row
-                      Row(
-                        children: <Widget>[
-                          //Currency
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: green,
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20))),
-                              onPressed: () => {},
-                              child: const Text("PKR")),
-                          Expanded(
-                            child: TextFormField(
-                                controller: currency,
-                                focusNode: amountFocusNode,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(13),
-                                  ThousandsFormatter(allowFraction: true)
-                                ],
-                                cursorColor: green,
-                                style: GoogleFonts.poppins(
-                                    fontSize: 30, fontWeight: FontWeight.w400),
-                                decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    hintText: "0",
-                                    border: InputBorder.none),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter amount to add your expense.";
-                                  }
-                                }),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
+                      // // currency Row
+                      // Row(
+                      //   children: <Widget>[
+                      //     //Currency
+                      //     ElevatedButton(
+                      //         style: ElevatedButton.styleFrom(
+                      //             primary: green,
+                      //             elevation: 0,
+                      //             shape: RoundedRectangleBorder(
+                      //                 borderRadius: BorderRadius.circular(20))),
+                      //         onPressed: () => {},
+                      //         child: const Text("PKR")),
+                      //     Expanded(
+                      //       child: TextFormField(
+                      //           controller: currency,
+                      //           focusNode: amountFocusNode,
+                      //           keyboardType: TextInputType.number,
+                      //           inputFormatters: [
+                      //             LengthLimitingTextInputFormatter(13),
+                      //             ThousandsFormatter(allowFraction: true)
+                      //           ],
+                      //           cursorColor: green,
+                      //           style: GoogleFonts.poppins(
+                      //               fontSize: 30, fontWeight: FontWeight.w400),
+                      //           decoration: const InputDecoration(
+                      //               contentPadding:
+                      //                   EdgeInsets.symmetric(horizontal: 10),
+                      //               hintText: "0",
+                      //               border: InputBorder.none),
+                      //           validator: (value) {
+                      //             if (value == null || value.isEmpty) {
+                      //               return "Please enter amount to add your expense.";
+                      //             }
+                      //           }),
+                      //     ),
+                      //   ],
+                      // ),
+                      // const SizedBox(height: 20),
                       //category row
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -281,8 +318,18 @@ class _AppState extends State<App> {
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                     break;
-                                  default:
+                                  case 'Finishing Work Items':
                                     _subCategory = _finishingMaterial;
+                                    _subSelectCategory = _subCategory[0];
+                                    print(_category);
+                                    break;
+                                  case 'Contactorr':
+                                    _subCategory = _contractor;
+                                    _subSelectCategory = _subCategory[0];
+                                    print(_subSelectCategory);
+                                    break;
+                                  default:
+                                    _subCategory = _itemWithMaterial;
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                 }
@@ -331,6 +378,38 @@ class _AppState extends State<App> {
                                     .toList(),
                                 onChanged: (category) => setState(
                                     () => _subSelectCategory = category)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      // Quntity Row
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: 45.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: green),
+                            child: const Icon(CupertinoIcons.bag_badge_plus,
+                                color: Colors.white),
+                          ),
+                          const SizedBox(width: 15),
+                          Expanded(
+                            child: TextFormField(
+                              controller: quntity,
+                              keyboardType: TextInputType.number,
+                              cursorColor: green,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 18, fontWeight: FontWeight.w400),
+                              decoration: InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey.shade400)),
+                                  focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: green)),
+                                  hintText: "Quantity"),
+                            ),
                           ),
                         ],
                       ),
