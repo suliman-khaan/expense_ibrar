@@ -1,4 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense/src/models/expense.dart';
 import 'package:expense/src/pages/setting.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pattern_formatter/numeric_formatter.dart';
 
 import 'home.dart';
+import '../resources/const.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -18,65 +21,6 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int pageIndex = 1;
-  final List<String> _category = [
-    'Grey Structure Material',
-    'Finishing Work Items',
-    'Contractor',
-    'Item With Material'
-  ];
-  final List<String> _greyMaterial = [
-    'Bricks',
-    'Crush',
-    'Sand',
-    'Rori',
-    'Kassis',
-    'Electric Item',
-    'Plumbing Item',
-    'Earthware',
-    'Brick Tile',
-    'AC Pipe',
-    'Bitumen',
-    'Polythene Sheet',
-    'Mud',
-    'Chips',
-    'Anti Termite',
-    'Boring',
-    'Guard Sal',
-    'Electric Bill',
-    'Taxes',
-    'Random'
-  ];
-  final List<String> _finishingMaterial = [
-    'Electric Items',
-    'Wood Items',
-    'Tiles',
-    'Paint',
-    'Polish',
-    'San It Ary Items',
-    'Granite'
-  ];
-  final List<String> _contractor = [
-    'Labour Contact',
-    'Electric Contact',
-    'Plumbing Contact',
-    'Tile Contact',
-    'Painting Contact',
-    'Polish Contact',
-    'Steel Fixer'
-  ];
-  final List<String> _itemWithMaterial = [
-    'False Ceiling',
-    'Aluminum Windows',
-    'Railings',
-    'Saftey Grius',
-    'Man Gate',
-    'Steel Stairs',
-    'Wooden Floor',
-    'Wall Paper',
-    'Fire Plale',
-    'Other Items',
-    'Taxes'
-  ];
   String? _selectCategory;
   String? _subSelectCategory;
   List<String> _subCategory = [];
@@ -97,8 +41,8 @@ class _AppState extends State<App> {
   final date = TextEditingController();
   late FocusNode amountFocusNode;
 
-  DateTime now = DateTime.now();
-  DateFormat today = DateFormat('dd-MM-yyyy');
+  // DateTime now = DateTime.now();
+  // DateFormat today = DateFormat('dd-MM-yyyy');
 
   bool isLoading = false;
   bool isStretched = false;
@@ -108,8 +52,8 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     amountFocusNode = FocusNode();
-    _selectCategory = _category[0];
-    _subCategory = _greyMaterial;
+    _selectCategory = AppData.category[0];
+    _subCategory = AppData.greyMaterial;
     _subSelectCategory = _subCategory[0];
   }
 
@@ -125,8 +69,8 @@ class _AppState extends State<App> {
   }
 
   void clean() {
-    _selectCategory = _category[0];
-    _subCategory = _greyMaterial;
+    _selectCategory = AppData.category[0];
+    _subCategory = AppData.greyMaterial;
     _subSelectCategory = _subCategory[0];
     currency.text = '';
     note.text = '';
@@ -308,7 +252,7 @@ class _AppState extends State<App> {
                                     borderSide: BorderSide(
                                         color: Colors.grey.shade400))),
                             value: _selectCategory,
-                            items: _category
+                            items: AppData.category
                                 .map((item) => DropdownMenuItem<String>(
                                       value: item,
                                       child: Text(item),
@@ -320,22 +264,21 @@ class _AppState extends State<App> {
                                 _selectCategory = category;
                                 switch (category) {
                                   case 'Grey Structure Material':
-                                    _subCategory = _greyMaterial;
+                                    _subCategory = AppData.greyMaterial;
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                     break;
                                   case 'Finishing Work Items':
-                                    _subCategory = _finishingMaterial;
+                                    _subCategory = AppData.finishingMaterial;
                                     _subSelectCategory = _subCategory[0];
-                                    print(_category);
                                     break;
                                   case 'Contactorr':
-                                    _subCategory = _contractor;
+                                    _subCategory = AppData.contractor;
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                     break;
                                   default:
-                                    _subCategory = _itemWithMaterial;
+                                    _subCategory = AppData.itemWithMaterial;
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                 }
@@ -532,9 +475,17 @@ class _AppState extends State<App> {
                                   print(quntity.text);
                                   print(date.text);
                                   print(note.text);
+                                  final expense = Expense(
+                                      amount: currency.text,
+                                      category: _selectCategory,
+                                      subCategory: _subSelectCategory,
+                                      quntity: quntity.text,
+                                      date: date.text,
+                                      note: note.text);
+                                  addExpense(expense);
                                 });
                                 await Future.delayed(
-                                    const Duration(seconds: 3));
+                                    const Duration(seconds: 2));
                                 setState(() =>
                                     {isLoading = false, addBtn = 'Data Added'});
                                 await Future.delayed(
@@ -572,4 +523,9 @@ class _AppState extends State<App> {
           ),
         );
       });
+  Future addExpense(Expense expense) async {
+    final collection = FirebaseFirestore.instance.collection('expense');
+    final data = expense.toJson();
+    await collection.add(data);
+  }
 }

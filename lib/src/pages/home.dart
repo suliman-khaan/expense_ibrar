@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense/src/models/expense.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -35,6 +34,11 @@ class _HomeState extends State<Home> {
     );
   }
 
+  Stream<List<Expense>> readExpense() => FirebaseFirestore.instance
+      .collection('expense')
+      .snapshots()
+      .map((allDocs) =>
+          allDocs.docs.map((doc) => Expense.fromJson(doc.data())).toList());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,52 +162,66 @@ class _HomeState extends State<Home> {
             sliver: SliverToBoxAdapter(
               child: SizedBox(
                 height: 120,
-                child: ListView.builder(
-                  itemCount: 7,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 12.0),
-                      child: Container(
-                        padding: const EdgeInsets.all(14),
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Wrap(
-                          direction: Axis.vertical,
-                          spacing: 10,
-                          children: [
-                            Container(
-                              height: 40,
-                              width: 40,
-                              decoration: const BoxDecoration(
-                                color: Colors.amber,
-                                shape: BoxShape.circle,
+                child: StreamBuilder<Object>(
+                    stream: readExpense(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (snapshot.hasData) {
+                        final expense = snapshot.data;
+                        return ListView.builder(
+                          itemCount: 2,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: Container(
+                                padding: const EdgeInsets.all(14),
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Wrap(
+                                  direction: Axis.vertical,
+                                  spacing: 10,
+                                  children: [
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.amber,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: icons[index],
+                                    ),
+                                    Text(
+                                      "${snapshot.data}",
+                                      style: TextStyle(
+                                        color: color2,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "In a 2 days",
+                                      style: TextStyle(
+                                        color: Colors.grey.shade400,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              child: icons[index],
-                            ),
-                            Text(
-                              "-150.52",
-                              style: TextStyle(
-                                color: color2,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "In a 2 days",
-                              style: TextStyle(
-                                color: Colors.grey.shade400,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                            );
+                          },
+                        );
+                      } else {
+                        return Text('${snapshot.data}');
+                      }
+                    }),
               ),
             ),
           ),
