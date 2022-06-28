@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:expense/src/pages/analytics.dart';
 import 'package:expense/src/pages/setting.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -28,11 +29,13 @@ class _AppState extends State<App> {
     'Bricks',
     'Crush',
     'Sand',
+    'Steel',
+    'Cement',
     'Rori',
-    'Kassis',
-    'Electric Item',
-    'Plumbing Item',
-    'Earthware',
+    'Kassu',
+    'Electric Items',
+    'Plumbing Items',
+    'Earthfil',
     'Brick Tile',
     'AC Pipe',
     'Bitumen',
@@ -41,7 +44,7 @@ class _AppState extends State<App> {
     'Chips',
     'Anti Termite',
     'Boring',
-    'Guard Sal',
+    'Guard Salary',
     'Electric Bill',
     'Taxes',
     'Random'
@@ -52,7 +55,7 @@ class _AppState extends State<App> {
     'Tiles',
     'Paint',
     'Polish',
-    'San It Ary Items',
+    'Sanitary Items',
     'Granite'
   ];
   final List<String> _contractor = [
@@ -69,11 +72,11 @@ class _AppState extends State<App> {
     'Aluminum Windows',
     'Railings',
     'Saftey Grius',
-    'Man Gate',
+    'Main Gate',
     'Steel Stairs',
     'Wooden Floor',
     'Wall Paper',
-    'Fire Plale',
+    'Fire Place',
     'Other Items',
     'Taxes'
   ];
@@ -87,7 +90,7 @@ class _AppState extends State<App> {
   List<Widget> pages = [
     const Profile(),
     const Home(),
-    const Profile(),
+    const Analytics(),
     const Setting(),
   ];
   final _catForm = GlobalKey<FormState>();
@@ -160,7 +163,7 @@ class _AppState extends State<App> {
           icons: const [
             Icons.search,
             Icons.home,
-            Icons.favorite,
+            Icons.analytics_outlined,
             Icons.settings,
           ],
           activeIndex: pageIndex,

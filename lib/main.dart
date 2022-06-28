@@ -1,3 +1,4 @@
+import 'package:expense/src/pages/analytics.dart';
 import 'package:expense/src/pages/app.dart';
 import 'package:expense/src/pages/home.dart';
 import 'package:expense/src/pages/profile.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         'home': (context) => const Home(),
         'profile': (context) => const Profile(),
         'setting': (context) => const Setting(),
+        'analytics' : (context) => const Analytics()
       },
     );
   }
