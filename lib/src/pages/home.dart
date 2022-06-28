@@ -14,13 +14,13 @@ class _HomeState extends State<Home> {
   final Color color2 = const Color.fromRGBO(33, 207, 184, 1);
   final Color backgroundColor = const Color.fromRGBO(241, 240, 246, 1);
   List<Icon> icons = const [
-    Icon(CupertinoIcons.bag),
-    Icon(CupertinoIcons.bus),
-    Icon(CupertinoIcons.building_2_fill),
-    Icon(CupertinoIcons.flame),
-    Icon(CupertinoIcons.gift),
-    Icon(CupertinoIcons.hammer),
-    Icon(CupertinoIcons.hare),
+    Icon(Icons.build),
+    Icon(Icons.format_align_justify),
+    Icon(Icons.grid_on),
+    Icon(Icons.highlight),
+    Icon(Icons.lightbulb),
+    Icon(Icons.gesture),
+    Icon(Icons.fire_hydrant),
   ];
 
   // List<IconData> iconItems = ;
