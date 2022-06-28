@@ -2,11 +2,11 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:expense/src/pages/setting.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:pattern_formatter/pattern_formatter.dart';
 import 'package:expense/src/pages/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pattern_formatter/numeric_formatter.dart';
 
 import 'home.dart';
 
@@ -97,7 +97,12 @@ class _AppState extends State<App> {
   final date = TextEditingController();
   late FocusNode amountFocusNode;
 
+  DateTime now = DateTime.now();
+  DateFormat today = DateFormat('dd-MM-yyyy');
+
   bool isLoading = false;
+  bool isStretched = false;
+  String addBtn = "Add";
 
   @override
   void initState() {
@@ -126,6 +131,7 @@ class _AppState extends State<App> {
     currency.text = '';
     note.text = '';
     date.text = '';
+    addBtn = 'Add';
   }
 
   // top menu button
@@ -232,44 +238,44 @@ class _AppState extends State<App> {
                   key: _catForm,
                   child: Column(
                     children: [
-                      // // currency Row
-                      // Row(
-                      //   children: <Widget>[
-                      //     //Currency
-                      //     ElevatedButton(
-                      //         style: ElevatedButton.styleFrom(
-                      //             primary: green,
-                      //             elevation: 0,
-                      //             shape: RoundedRectangleBorder(
-                      //                 borderRadius: BorderRadius.circular(20))),
-                      //         onPressed: () => {},
-                      //         child: const Text("PKR")),
-                      //     Expanded(
-                      //       child: TextFormField(
-                      //           controller: currency,
-                      //           focusNode: amountFocusNode,
-                      //           keyboardType: TextInputType.number,
-                      //           inputFormatters: [
-                      //             LengthLimitingTextInputFormatter(13),
-                      //             ThousandsFormatter(allowFraction: true)
-                      //           ],
-                      //           cursorColor: green,
-                      //           style: GoogleFonts.poppins(
-                      //               fontSize: 30, fontWeight: FontWeight.w400),
-                      //           decoration: const InputDecoration(
-                      //               contentPadding:
-                      //                   EdgeInsets.symmetric(horizontal: 10),
-                      //               hintText: "0",
-                      //               border: InputBorder.none),
-                      //           validator: (value) {
-                      //             if (value == null || value.isEmpty) {
-                      //               return "Please enter amount to add your expense.";
-                      //             }
-                      //           }),
-                      //     ),
-                      //   ],
-                      // ),
-                      // const SizedBox(height: 20),
+                      // currency Row
+                      Row(
+                        children: <Widget>[
+                          //Currency
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: green,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20))),
+                              onPressed: () => {},
+                              child: const Text("PKR")),
+                          Expanded(
+                            child: TextFormField(
+                                controller: currency,
+                                focusNode: amountFocusNode,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(13),
+                                  ThousandsFormatter(allowFraction: true)
+                                ],
+                                cursorColor: green,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 30, fontWeight: FontWeight.w400),
+                                decoration: const InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    hintText: "0",
+                                    border: InputBorder.none),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please enter amount to add your expense.";
+                                  }
+                                }),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
                       //category row
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -447,8 +453,19 @@ class _AppState extends State<App> {
                                 final pickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: DateTime.now(),
-                                  firstDate: DateTime(2000),
-                                  lastDate: DateTime(2101),
+                                  firstDate: DateTime(2022),
+                                  lastDate: DateTime(2032),
+                                  builder: (context, child) {
+                                    return Theme(
+                                      data: ThemeData(
+                                          colorScheme: ColorScheme.light(
+                                        primary: green,
+                                        onPrimary: Colors.white,
+                                        onSurface: Colors.black,
+                                      )),
+                                      child: child!,
+                                    );
+                                  },
                                 );
 
                                 if (pickedDate != null) {
@@ -511,12 +528,20 @@ class _AppState extends State<App> {
                                 setState(() {
                                   isLoading = true;
                                   print(currency.text);
+                                  print(_subSelectCategory);
+                                  print(quntity.text);
                                   print(date.text);
-                                  print(_selectCategory);
+                                  print(note.text);
                                 });
                                 await Future.delayed(
-                                    const Duration(seconds: 5));
-                                setState(() => isLoading = false);
+                                    const Duration(seconds: 3));
+                                setState(() =>
+                                    {isLoading = false, addBtn = 'Data Added'});
+                                await Future.delayed(
+                                    const Duration(milliseconds: 500));
+                                // ignore: use_build_context_synchronously
+                                Navigator.of(context).pop();
+                                clean();
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -534,7 +559,7 @@ class _AppState extends State<App> {
                                       strokeWidth: 2,
                                     ),
                                   )
-                                : Text("Add",
+                                : Text(addBtn,
                                     style: GoogleFonts.poppins(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500)),
