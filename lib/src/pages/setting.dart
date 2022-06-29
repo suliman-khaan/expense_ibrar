@@ -2,7 +2,10 @@
 
 import 'dart:async';
 
+import 'package:expense/src/resources/allData.dart';
+import 'package:expense/src/resources/config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class CurrencyPicker {
@@ -83,13 +86,6 @@ class _SettingState extends State<Setting> {
     testercurrency
         .add(CurrencyPicker(countrySymbol: nigeria, selectedCurrency: false));
   }
-
-  // void currency(context){
-  //   Locale locale = Localizations.localeOf(context);
-  //   var format = NumberFormat.simpleCurrency(locale:Platform.localeName,name:"NGN");
-  //   print("First SYmbol : " + format.currencySymbol);
-  //   print("First Name : " + format.currencyName);
-  // }
 
   // for General:
   @override
@@ -371,21 +367,6 @@ class _SettingState extends State<Setting> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-          //     appBar: AppBar(
-          //       leading: IconButton(
-          //   icon: Icon(Icons.arrow_back, color: Colors.white),
-          //   onPressed: () => Navigator.of(context).pop(),
-          // ),
-          //       actions: [
-          //         PopupMenuButton<int>(
-          //             onSelected: (item) => _onSelected(context, item),
-          //             itemBuilder: (context) =>
-          //                 [
-          //                   PopupMenuItem<int>(value: 0, child: const Text("Setting")),
-          //                   PopupMenuItem<int>(value: 1, child: const Text("more"))
-          //                 ])
-          //       ],
-          //     ),
           body: SafeArea(
               child: ListView(
         children: [
@@ -449,6 +430,19 @@ class _SettingState extends State<Setting> {
                 ],
                 content: Column(
                   children: [
+                    // SizedBox(
+                    //   height: 200,
+                    //   child: GridView.count(
+                    //       crossAxisCount: 4,
+                    //       crossAxisSpacing: 4.0,
+                    //       mainAxisSpacing: 8.0,
+                    //       children:
+                    //           List.generate(testercurrency.length, (index) {
+                    //         return ListTile(
+                    //           title: Text(testercurrency[index].countrySymbol),
+                    //         );
+                    //       })),
+                    // ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -466,6 +460,11 @@ class _SettingState extends State<Setting> {
                                   testercurrency[6].selectedCurrency = false;
                                   testercurrency[7].selectedCurrency = false;
                                   a = testercurrency[0].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                 });
                                 // testercurrency[0].selectedCurrency = true;
                               },
@@ -501,6 +500,11 @@ class _SettingState extends State<Setting> {
                                   testercurrency[6].selectedCurrency = false;
                                   testercurrency[7].selectedCurrency = false;
                                   a = testercurrency[1].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                   print(a);
                                 });
                               },
@@ -527,6 +531,11 @@ class _SettingState extends State<Setting> {
                                   testercurrency[6].selectedCurrency = false;
                                   testercurrency[7].selectedCurrency = false;
                                   a = testercurrency[2].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                   print(a);
                                 });
                               },
@@ -553,6 +562,11 @@ class _SettingState extends State<Setting> {
                                   testercurrency[6].selectedCurrency = false;
                                   testercurrency[7].selectedCurrency = false;
                                   a = testercurrency[3].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                   print(a);
                                 });
                               },
@@ -582,6 +596,11 @@ class _SettingState extends State<Setting> {
                                   testercurrency[6].selectedCurrency = false;
                                   testercurrency[7].selectedCurrency = false;
                                   a = testercurrency[4].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                   print(a);
                                 });
                                 // testercurrency[0].selectedCurrency = true;
@@ -611,6 +630,11 @@ class _SettingState extends State<Setting> {
                                   testercurrency[3].selectedCurrency = false;
                                   testercurrency[7].selectedCurrency = false;
                                   a = testercurrency[3].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                   print(a);
                                 });
                                 // testercurrency[0].selectedCurrency = true;
@@ -640,6 +664,11 @@ class _SettingState extends State<Setting> {
                                   testercurrency[3].selectedCurrency = false;
                                   testercurrency[7].selectedCurrency = false;
                                   a = testercurrency[6].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                   print(a);
                                 });
                                 // testercurrency[0].selectedCurrency = true;
@@ -669,6 +698,12 @@ class _SettingState extends State<Setting> {
                                   testercurrency[3].selectedCurrency = false;
                                   testercurrency[6].selectedCurrency = false;
                                   a = testercurrency[7].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  isCurrencySelect = false;
+                                  print("======= : " +
+                                      currencyTester.switchCurrency());
+                                  print("2nd :: " +
+                                      CurrencyChanger.currencyPickerVal);
                                   print(a);
                                 });
                                 // testercurrency[0].selectedCurrency = true;
@@ -689,9 +724,17 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                     TextField(
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(4),
+                      ],
                       onChanged: (text) {
                         setState(() {
-                          a = text;
+                          a = _controller.text;
+                          _controller.value = _controller.value.copyWith(
+                            text: a,
+                            selection:
+                                TextSelection.collapsed(offset: a.length),
+                          );
                           testercurrency[1].selectedCurrency = false;
                           testercurrency[0].selectedCurrency = false;
                           testercurrency[4].selectedCurrency = false;
@@ -700,11 +743,25 @@ class _SettingState extends State<Setting> {
                           testercurrency[3].selectedCurrency = false;
                           testercurrency[6].selectedCurrency = false;
                           testercurrency[7].selectedCurrency = false;
+                          isCurrencySelect = true;
+
+                          currencyTester.switchValue(a);
+                          print("======= : " + currencyTester.switchCurrency());
+                          print("2nd :: " + CurrencyChanger.currencyPickerVal);
                         });
                       },
+                      controller: _controller,
                       decoration: InputDecoration(
-                          hintText: "Enter Your Custom Currency"),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(color: Colors.green)),
+                        hintText: "Enter Your Custom Currency",
+                      ),
                     ),
+                    /*
                     SizedBox(height: 20),
                     CheckboxListTile(
                       contentPadding: EdgeInsets.zero,
@@ -728,6 +785,7 @@ class _SettingState extends State<Setting> {
                       },
                       title: Text("Currency uses decimals"),
                     ),
+                    */
                   ],
                 ),
               ),
@@ -736,9 +794,13 @@ class _SettingState extends State<Setting> {
         });
   }
 
+// for textfield
+  TextEditingController _controller = TextEditingController();
+
   // FOR check box tiles 2 booleans
   bool isCheckboxtile1 = false;
   bool isCheckboxtile2 = false;
+  bool isCurrencySelect = false;
 
   // just for testing given values of currency symbol assign to a
   var a = "";

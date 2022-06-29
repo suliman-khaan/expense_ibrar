@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:expense/src/pages/analytics.dart';
 import 'package:expense/src/pages/setting.dart';
+import 'package:expense/src/resources/config.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:expense/src/pages/profile.dart';
@@ -252,7 +253,7 @@ class _AppState extends State<App> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20))),
                               onPressed: () => {},
-                              child: const Text("PKR")),
+                              child:Text(currencyTester.switchCurrency().toUpperCase())),
                           Expanded(
                             child: TextFormField(
                                 controller: currency,

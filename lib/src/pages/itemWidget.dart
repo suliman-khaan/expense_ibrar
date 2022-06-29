@@ -1,4 +1,5 @@
 import 'package:expense/src/resources/category.dart';
+import 'package:expense/src/resources/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -21,7 +22,7 @@ class ItemWidget extends StatelessWidget {
             child: item.icon,
           ),
           Text(item.name),
-          Text("PKR ${item.amount.toString()}"),
+          Text("${currencyTester.switchCurrency().toUpperCase()} ${item.amount.toString()}"),
           Text("${item.percentage.toString()}%")
         ],
       ),
