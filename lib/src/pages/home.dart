@@ -34,11 +34,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Stream<List<Expense>> readExpense() => FirebaseFirestore.instance
-      .collection('expense')
-      .snapshots()
-      .map((allDocs) =>
-          allDocs.docs.map((doc) => Expense.fromJson(doc.data())).toList());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,20 +157,36 @@ class _HomeState extends State<Home> {
             sliver: SliverToBoxAdapter(
               child: SizedBox(
                 height: 120,
-                child: StreamBuilder<Object>(
-                    stream: readExpense(),
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('expense')
+                        .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
                       }
-                      if (snapshot.hasData) {
-                        final expense = snapshot.data;
+                      if (snapshot.hasError) {
+                        return const Text(
+                          "Please Restart Your App.",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        );
+                      } else if (snapshot.hasData) {
+                        final expense = snapshot.data!.docs;
                         return ListView.builder(
-                          itemCount: 2,
+                          itemCount: expense.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
+                            final expenseDate =
+                                DateTime.parse(expense[index]['date']);
+                            final today = DateTime.now();
+                            print(today);
+                            final difference =
+                                expenseDate.difference(today).inDays;
                             return Padding(
                               padding: const EdgeInsets.only(right: 12.0),
                               child: Container(
@@ -199,14 +210,14 @@ class _HomeState extends State<Home> {
                                       child: icons[index],
                                     ),
                                     Text(
-                                      "${snapshot.data}",
+                                      "${expense[index]['amount']}",
                                       style: TextStyle(
                                         color: color2,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
-                                      "In a 2 days",
+                                      "In a $difference days",
                                       style: TextStyle(
                                         color: Colors.grey.shade400,
                                         fontSize: 12,

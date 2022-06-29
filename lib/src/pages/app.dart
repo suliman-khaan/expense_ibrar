@@ -413,7 +413,7 @@ class _AppState extends State<App> {
 
                                 if (pickedDate != null) {
                                   String formattedDate =
-                                      DateFormat('dd-MM-yyyy')
+                                      DateFormat('yyyy-MM-dd')
                                           .format(pickedDate);
                                   setState(() {
                                     date.text = formattedDate;
