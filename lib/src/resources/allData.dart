@@ -17,6 +17,13 @@ class CurrencyChanger with ChangeNotifier{
   } 
   void switchValue(val){
     currencyPickerVal = val;
+    for(var i=0;i<testercurrency.length;i++){
+      if(val == testercurrency[i].countrySymbol){
+        testercurrency[i].selectedCurrency = true;
+      }else{
+        testercurrency[i].selectedCurrency= false;
+      }
+    }
     notifyListeners();
   }
 }

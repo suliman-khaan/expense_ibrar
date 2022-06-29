@@ -416,368 +416,41 @@ class _SettingState extends State<Setting> {
                 ],
                 content: Column(
                   children: [
-                    // SizedBox(
-                    //   height: 200,
-                    //   child: GridView.count(
-                    //       crossAxisCount: 4,
-                    //       crossAxisSpacing: 4.0,
-                    //       mainAxisSpacing: 8.0,
-                    //       children:
-                    //           List.generate(CurrencyChanger.testercurrency.length, (index) {
-                    //         return ListTile(
-                    //           title: Text(CurrencyChanger.testercurrency[index].countrySymbol),
-                    //         );
-                    //       })),
-                    // ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[0].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[0].selectedCurrency;
-                                  CurrencyChanger.testercurrency[1]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[2]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[3]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[4]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[5]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[6]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[7]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[0].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                                // CurrencyChanger.testercurrency[0].selectedCurrency = true;
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[0].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              child: Text(
-                                CurrencyChanger.testercurrency[0].countrySymbol,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
-                              )),
-                          TextButton(
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[1].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[1].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[1].selectedCurrency;
-                                  CurrencyChanger.testercurrency[0]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[2]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[3]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[4]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[5]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[6]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[7]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[1].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                              },
-                              child: Text(
-                                  CurrencyChanger
-                                      .testercurrency[1].countrySymbol,
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16))),
-                          TextButton(
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[2].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[2].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[2].selectedCurrency;
-                                  CurrencyChanger.testercurrency[1]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[0]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[3]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[4]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[5]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[6]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[7]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[2].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                              },
-                              child: Text(
-                                  CurrencyChanger
-                                      .testercurrency[2].countrySymbol,
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16))),
-                          TextButton(
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[3].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[3].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[3].selectedCurrency;
-                                  CurrencyChanger.testercurrency[1]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[0]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[2]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[4]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[5]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[6]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[7]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[3].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                              },
-                              child: Text(
-                                  CurrencyChanger
-                                      .testercurrency[3].countrySymbol,
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16))),
-                        ],
-                      ),
-                    ),
                     SizedBox(
-                      height: 20,
+                      height: 120,
+                      child: GridView.count(
+                          crossAxisCount: 4,
+                          crossAxisSpacing: 4.0,
+                          mainAxisSpacing: 8.0,
+                          children:
+                              List.generate(CurrencyChanger.testercurrency.length, (index) {
+                            return TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  a = CurrencyChanger
+                                      .testercurrency[index].countrySymbol;
+                                  currencyTester.switchValue(a);
+                                  FocusScope.of(context).unfocus();
+                                  CurrencyChanger.isCurrencySelect = false;
+                                  _controller.clear();
+                                });
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: CurrencyChanger
+                                          .testercurrency[index].selectedCurrency
+                                      ? MaterialStateProperty.all<Color>(
+                                          Colors.grey)
+                                      : MaterialStateProperty.all<Color>(
+                                          Colors.transparent)),
+                              child: Text(
+                                CurrencyChanger.testercurrency[index].countrySymbol,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
+                              ));
+                          })),
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[4].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[4].selectedCurrency;
-                                  CurrencyChanger.testercurrency[1]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[0]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[5]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[2]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[3]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[6]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[7]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[4].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                                // CurrencyChanger.testercurrency[0].selectedCurrency = true;
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[4].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              child: Text(
-                                CurrencyChanger.testercurrency[4].countrySymbol,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
-                              )),
-                          TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[5].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[5].selectedCurrency;
-                                  CurrencyChanger.testercurrency[1]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[0]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[4]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[6]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[2]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[3]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[7]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[3].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                                // CurrencyChanger.testercurrency[0].selectedCurrency = true;
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[5].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              child: Text(
-                                CurrencyChanger.testercurrency[5].countrySymbol,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
-                              )),
-                          TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[6].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[6].selectedCurrency;
-                                  CurrencyChanger.testercurrency[1]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[0]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[4]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[5]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[2]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[3]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[7]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[6].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                                // CurrencyChanger.testercurrency[0].selectedCurrency = true;
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[6].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              child: Text(
-                                CurrencyChanger.testercurrency[6].countrySymbol,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
-                              )),
-                          TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  CurrencyChanger
-                                          .testercurrency[7].selectedCurrency =
-                                      !CurrencyChanger
-                                          .testercurrency[7].selectedCurrency;
-                                  CurrencyChanger.testercurrency[1]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[0]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[4]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[5]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[2]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[3]
-                                      .selectedCurrency = false;
-                                  CurrencyChanger.testercurrency[6]
-                                      .selectedCurrency = false;
-                                  a = CurrencyChanger
-                                      .testercurrency[7].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                                // CurrencyChanger.testercurrency[0].selectedCurrency = true;
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[7].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              child: Text(
-                                CurrencyChanger.testercurrency[7].countrySymbol,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
-                              )),
-                        ],
-                      ),
+                     SizedBox(
+                      height: 20,
                     ),
                     TextField(
                       inputFormatters: [
@@ -788,27 +461,10 @@ class _SettingState extends State<Setting> {
                         setState(() {
                           CurrencyChanger.textfieldData = _controller.text;
                           a = _controller.text;
-                          // _controller.value = _controller.value.copyWith(
-                          //   text:CurrencyChanger.textfieldData,
-                          //   selection:
-                          //       TextSelection.collapsed(offset: CurrencyChanger.textfieldData.length),
-                          // );
-                          CurrencyChanger.testercurrency[1].selectedCurrency =
+                          for(var i =0;i<CurrencyChanger.testercurrency.length;i++){
+                            CurrencyChanger.testercurrency[i].selectedCurrency =
                               false;
-                          CurrencyChanger.testercurrency[0].selectedCurrency =
-                              false;
-                          CurrencyChanger.testercurrency[4].selectedCurrency =
-                              false;
-                          CurrencyChanger.testercurrency[5].selectedCurrency =
-                              false;
-                          CurrencyChanger.testercurrency[2].selectedCurrency =
-                              false;
-                          CurrencyChanger.testercurrency[3].selectedCurrency =
-                              false;
-                          CurrencyChanger.testercurrency[6].selectedCurrency =
-                              false;
-                          CurrencyChanger.testercurrency[7].selectedCurrency =
-                              false;
+                          }
 
                           currencyTester.switchValue(a);
                         });
@@ -824,31 +480,6 @@ class _SettingState extends State<Setting> {
                         hintText: "Enter Your Custom Currency",
                       ),
                     ),
-                    /*
-                    SizedBox(height: 20),
-                    CheckboxListTile(
-                      contentPadding: EdgeInsets.zero,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: isCheckboxtile1,
-                      onChanged: (value) {
-                        setState(() {
-                          isCheckboxtile1 = value!;
-                        });
-                      },
-                      title: Text("Currency symbol is written before amount"),
-                    ),
-                    CheckboxListTile(
-                      contentPadding: EdgeInsets.zero,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: isCheckboxtile2,
-                      onChanged: (value) {
-                        setState(() {
-                          isCheckboxtile2 = value!;
-                        });
-                      },
-                      title: Text("Currency uses decimals"),
-                    ),
-                    */
                   ],
                 ),
               ),
@@ -860,11 +491,6 @@ class _SettingState extends State<Setting> {
 // for textfield
   // ignore: prefer_final_fields
   TextEditingController _controller = TextEditingController();
-
-  // FOR check box tiles 2 booleans
-  bool isCheckboxtile1 = false;
-  bool isCheckboxtile2 = false;
-
   // just for testing given values of currency symbol assign to a
   var a = "";
 }
