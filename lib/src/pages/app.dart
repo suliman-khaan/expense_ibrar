@@ -82,18 +82,6 @@ class _AppState extends State<App> {
   }
 
   // top menu button
-  _onSelected(BuildContext context, int item) {
-    switch (item) {
-      case 0:
-        Navigator.pushNamed(context, "setting");
-        break;
-      case 1:
-        print("you clicked more");
-        break;
-      default:
-        print("went someting wrong");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,6 +208,7 @@ class _AppState extends State<App> {
                                   if (value == null || value.isEmpty) {
                                     return "Please enter amount to add your expense.";
                                   }
+                                  return null;
                                 }),
                           ),
                         ],
@@ -271,7 +260,6 @@ class _AppState extends State<App> {
                                   case 'Grey Structure Material':
                                     _subCategory = AppData.greyMaterial;
                                     _subSelectCategory = _subCategory[0];
-                                    print(_subSelectCategory);
                                     break;
                                   case 'Finishing Work Items':
                                     _subCategory = AppData.finishingMaterial;
@@ -280,12 +268,10 @@ class _AppState extends State<App> {
                                   case 'Contactorr':
                                     _subCategory = AppData.contractor;
                                     _subSelectCategory = _subCategory[0];
-                                    print(_subSelectCategory);
                                     break;
                                   default:
                                     _subCategory = AppData.itemWithMaterial;
                                     _subSelectCategory = _subCategory[0];
-                                    print(_subSelectCategory);
                                 }
                               });
                             },
@@ -429,6 +415,7 @@ class _AppState extends State<App> {
                                 if (value == null || value.isEmpty) {
                                   return "Please! Select Date to add expense.";
                                 }
+                                return null;
                               },
                             ),
                           ),
@@ -475,11 +462,6 @@ class _AppState extends State<App> {
                               if (_catForm.currentState!.validate()) {
                                 setState(() {
                                   isLoading = true;
-                                  print(currency.text);
-                                  print(_subSelectCategory);
-                                  print(quntity.text);
-                                  print(date.text);
-                                  print(note.text);
                                   final expense = Expense(
                                       amount: currency.text,
                                       category: _selectCategory,

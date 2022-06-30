@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:expense/src/models/expense.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -184,7 +183,6 @@ class _HomeState extends State<Home> {
                             final expenseDate =
                                 DateTime.parse(expense[index]['date']);
                             final today = DateTime.now();
-                            print(today);
                             final difference =
                                 expenseDate.difference(today).inDays;
                             return Padding(

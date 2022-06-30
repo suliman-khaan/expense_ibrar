@@ -5,8 +5,8 @@ import 'package:expense/src/pages/profile.dart';
 import 'package:expense/src/pages/setting.dart';
 import 'package:flutter/material.dart';
 
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'src/resources/theme_provider.dart';
 
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         'home': (context) => const Home(),
         'profile': (context) => const Profile(),
         'setting': (context) => const Setting(),
-        'analytics' : (context) => const Analytics()
+        'analytics': (context) => const Analytics()
       },
     );
   }
