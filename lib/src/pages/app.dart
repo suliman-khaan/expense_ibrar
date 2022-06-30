@@ -1,5 +1,7 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart;
 import 'package:expense/src/pages/analytics.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense/src/models/expense.dart';\
 import 'package:expense/src/pages/setting.dart';
 import 'package:expense/src/resources/config.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pattern_formatter/numeric_formatter.dart';
 
 import 'home.dart';
+import '../resources/const.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -101,8 +104,8 @@ class _AppState extends State<App> {
   final date = TextEditingController();
   late FocusNode amountFocusNode;
 
-  DateTime now = DateTime.now();
-  DateFormat today = DateFormat('dd-MM-yyyy');
+  // DateTime now = DateTime.now();
+  // DateFormat today = DateFormat('dd-MM-yyyy');
 
   bool isLoading = false;
   bool isStretched = false;
@@ -112,8 +115,8 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     amountFocusNode = FocusNode();
-    _selectCategory = _category[0];
-    _subCategory = _greyMaterial;
+    _selectCategory = AppData.category[0];
+    _subCategory = AppData.greyMaterial;
     _subSelectCategory = _subCategory[0];
   }
 
@@ -129,8 +132,8 @@ class _AppState extends State<App> {
   }
 
   void clean() {
-    _selectCategory = _category[0];
-    _subCategory = _greyMaterial;
+    _selectCategory = AppData.category[0];
+    _subCategory = AppData.greyMaterial;
     _subSelectCategory = _subCategory[0];
     currency.text = '';
     note.text = '';
@@ -312,7 +315,7 @@ class _AppState extends State<App> {
                                     borderSide: BorderSide(
                                         color: Colors.grey.shade400))),
                             value: _selectCategory,
-                            items: _category
+                            items: AppData.category
                                 .map((item) => DropdownMenuItem<String>(
                                       value: item,
                                       child: Text(item),
@@ -324,22 +327,21 @@ class _AppState extends State<App> {
                                 _selectCategory = category;
                                 switch (category) {
                                   case 'Grey Structure Material':
-                                    _subCategory = _greyMaterial;
+                                    _subCategory = AppData.greyMaterial;
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                     break;
                                   case 'Finishing Work Items':
-                                    _subCategory = _finishingMaterial;
+                                    _subCategory = AppData.finishingMaterial;
                                     _subSelectCategory = _subCategory[0];
-                                    print(_category);
                                     break;
                                   case 'Contactorr':
-                                    _subCategory = _contractor;
+                                    _subCategory = AppData.contractor;
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                     break;
                                   default:
-                                    _subCategory = _itemWithMaterial;
+                                    _subCategory = AppData.itemWithMaterial;
                                     _subSelectCategory = _subCategory[0];
                                     print(_subSelectCategory);
                                 }
@@ -474,7 +476,7 @@ class _AppState extends State<App> {
 
                                 if (pickedDate != null) {
                                   String formattedDate =
-                                      DateFormat('dd-MM-yyyy')
+                                      DateFormat('yyyy-MM-dd')
                                           .format(pickedDate);
                                   setState(() {
                                     date.text = formattedDate;
@@ -536,9 +538,17 @@ class _AppState extends State<App> {
                                   print(quntity.text);
                                   print(date.text);
                                   print(note.text);
+                                  final expense = Expense(
+                                      amount: currency.text,
+                                      category: _selectCategory,
+                                      subCategory: _subSelectCategory,
+                                      quntity: quntity.text,
+                                      date: date.text,
+                                      note: note.text);
+                                  addExpense(expense);
                                 });
                                 await Future.delayed(
-                                    const Duration(seconds: 3));
+                                    const Duration(seconds: 2));
                                 setState(() =>
                                     {isLoading = false, addBtn = 'Data Added'});
                                 await Future.delayed(
@@ -576,4 +586,9 @@ class _AppState extends State<App> {
           ),
         );
       });
+  Future addExpense(Expense expense) async {
+    final collection = FirebaseFirestore.instance.collection('expense');
+    final data = expense.toJson();
+    await collection.add(data);
+  }
 }
