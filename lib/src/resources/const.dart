@@ -9,11 +9,13 @@ class AppData {
     'Bricks',
     'Crush',
     'Sand',
+    'Steel',
+    'Cement',
     'Rori',
-    'Kassis',
-    'Electric Item',
-    'Plumbing Item',
-    'Earthware',
+    'Kassu',
+    'Electric Items',
+    'Plumbing Items',
+    'Earthfil',
     'Brick Tile',
     'AC Pipe',
     'Bitumen',
@@ -22,7 +24,7 @@ class AppData {
     'Chips',
     'Anti Termite',
     'Boring',
-    'Guard Sal',
+    'Guard Salary',
     'Electric Bill',
     'Taxes',
     'Random'
@@ -33,7 +35,7 @@ class AppData {
     'Tiles',
     'Paint',
     'Polish',
-    'San It Ary Items',
+    'Sanitary Items',
     'Granite'
   ];
   static List<String> contractor = [
@@ -50,11 +52,11 @@ class AppData {
     'Aluminum Windows',
     'Railings',
     'Saftey Grius',
-    'Man Gate',
+    'Main Gate',
     'Steel Stairs',
     'Wooden Floor',
     'Wall Paper',
-    'Fire Plale',
+    'Fire Place',
     'Other Items',
     'Taxes'
   ];
