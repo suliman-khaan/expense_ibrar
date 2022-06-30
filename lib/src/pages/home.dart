@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../resources/config.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
   @override
@@ -159,6 +161,8 @@ class _HomeState extends State<Home> {
                 child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection('expense')
+                        .where('date',
+                            isGreaterThanOrEqualTo: DateTime.now().toString())
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -208,7 +212,7 @@ class _HomeState extends State<Home> {
                                       child: icons[index],
                                     ),
                                     Text(
-                                      "${expense[index]['amount']}",
+                                      "${currencyTester.switchCurrency().toUpperCase()} ${expense[index]['amount']}",
                                       style: TextStyle(
                                         color: color2,
                                         fontWeight: FontWeight.bold,
