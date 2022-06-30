@@ -1,7 +1,9 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart;
+import 'package:expense/src/pages/analytics.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:expense/src/models/expense.dart';
+import 'package:expense/src/models/expense.dart';\
 import 'package:expense/src/pages/setting.dart';
+import 'package:expense/src/resources/config.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:expense/src/pages/profile.dart';
@@ -21,6 +23,67 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int pageIndex = 1;
+  final List<String> _category = [
+    'Grey Structure Material',
+    'Finishing Work Items',
+    'Contractor',
+    'Item With Material'
+  ];
+  final List<String> _greyMaterial = [
+    'Bricks',
+    'Crush',
+    'Sand',
+    'Steel',
+    'Cement',
+    'Rori',
+    'Kassu',
+    'Electric Items',
+    'Plumbing Items',
+    'Earthfil',
+    'Brick Tile',
+    'AC Pipe',
+    'Bitumen',
+    'Polythene Sheet',
+    'Mud',
+    'Chips',
+    'Anti Termite',
+    'Boring',
+    'Guard Salary',
+    'Electric Bill',
+    'Taxes',
+    'Random'
+  ];
+  final List<String> _finishingMaterial = [
+    'Electric Items',
+    'Wood Items',
+    'Tiles',
+    'Paint',
+    'Polish',
+    'Sanitary Items',
+    'Granite'
+  ];
+  final List<String> _contractor = [
+    'Labour Contact',
+    'Electric Contact',
+    'Plumbing Contact',
+    'Tile Contact',
+    'Painting Contact',
+    'Polish Contact',
+    'Steel Fixer'
+  ];
+  final List<String> _itemWithMaterial = [
+    'False Ceiling',
+    'Aluminum Windows',
+    'Railings',
+    'Saftey Grius',
+    'Main Gate',
+    'Steel Stairs',
+    'Wooden Floor',
+    'Wall Paper',
+    'Fire Place',
+    'Other Items',
+    'Taxes'
+  ];
   String? _selectCategory;
   String? _subSelectCategory;
   List<String> _subCategory = [];
@@ -31,7 +94,7 @@ class _AppState extends State<App> {
   List<Widget> pages = [
     const Profile(),
     const Home(),
-    const Profile(),
+    const Analytics(),
     const Setting(),
   ];
   final _catForm = GlobalKey<FormState>();
@@ -104,7 +167,7 @@ class _AppState extends State<App> {
           icons: const [
             Icons.search,
             Icons.home,
-            Icons.favorite,
+            Icons.analytics_outlined,
             Icons.settings,
           ],
           activeIndex: pageIndex,
@@ -193,7 +256,7 @@ class _AppState extends State<App> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20))),
                               onPressed: () => {},
-                              child: const Text("PKR")),
+                              child:Text(currencyTester.switchCurrency().toUpperCase())),
                           Expanded(
                             child: TextFormField(
                                 controller: currency,
