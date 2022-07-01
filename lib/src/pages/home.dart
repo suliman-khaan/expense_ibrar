@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense/src/resources/allData.dart';
 import 'package:flutter/material.dart';
 
 import '../resources/config.dart';
@@ -22,7 +23,6 @@ class _HomeState extends State<Home> {
     Icon(Icons.gesture),
     Icon(Icons.fire_hydrant),
   ];
-
   // List<IconData> iconItems = ;
   Container circle() {
     return Container(
@@ -126,11 +126,11 @@ class _HomeState extends State<Home> {
                 ),
 
                 // 1.4) Creating amount
-                const Positioned(
+                Positioned(
                   left: 15,
                   bottom: 20,
                   child: Text(
-                    "\$5785.55",
+                    "${currencyTester.switchCurrency().toUpperCase()}5785.55",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 27,
@@ -142,12 +142,44 @@ class _HomeState extends State<Home> {
           ),
 
           // 2) Creating section title
-          const SliverPadding(
+          SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             sliver: SliverToBoxAdapter(
-              child: SectionHeader(
-                title: "Planning Ahead",
-                actionText: "-\$540.52",
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('expense')
+                    .where('date',
+                        isGreaterThanOrEqualTo: DateTime.now().toString())
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return const Text(
+                      "Please Restart Your App.",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    final addAmount = snapshot.data!.docs;
+                    // planning Amount Data
+                    num planningAmount = 0;
+                    for (int i = 0; i < addAmount.length; i++) {
+                      planningAmount += addAmount[i]['amount'];
+                    }
+                    return SectionHeader(
+                      title: "Planning Ahead",
+                      actionText: "${currencyTester.switchCurrency()} ${planningAmount.toString()}",
+                    );
+                  } else {
+                    return Text('${snapshot.data}');
+                  }
+                },
               ),
             ),
           ),
@@ -259,6 +291,7 @@ class _HomeState extends State<Home> {
           ),
 
           // 6) Scrolling calendar
+          /*
           SliverPadding(
             padding:
                 const EdgeInsets.only(bottom: 8.0, left: 20.0, right: 20.0),
@@ -301,50 +334,151 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-
+*/
           SliverPadding(
-            padding:
-                const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 60.0),
+            padding: EdgeInsets.only(left: 20.0, right: 20.0),
             sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 5.0),
-                    padding: const EdgeInsets.all(10),
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: const BoxDecoration(
-                              color: Colors.amber, shape: BoxShape.circle),
-                          child: icons[index],
+                delegate: SliverChildListDelegate([
+              SingleChildScrollView(
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('expense')
+                      .where('date', isLessThan: DateTime.now().toString())
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (snapshot.hasError) {
+                      return const Text(
+                        "Please Restart YOur App.",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
                         ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            "History ${index + 1}".toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.grey,
-                            ),
-                          ),
+                      );
+                    } else if (snapshot.hasData) {
+                      final expenseData = snapshot.data!.docs;
+                      return Container(
+                        transform: Matrix4.translationValues(0.0, -30.0, 0.0),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: expenseData.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: const EdgeInsets.only(bottom: 5.0),
+                              padding: const EdgeInsets.all(10),
+                              height: 80,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: const BoxDecoration(
+                                        color: Colors.amber,
+                                        shape: BoxShape.circle),
+                                    child: icons[index],
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      expenseData[index]["sub-category"],
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  Text('-${expenseData[index]["amount"]}'),
+                                ],
+                              ),
+                            );
+                          },
                         ),
-                        const Text("-150.52"),
-                      ],
-                    ),
-                  );
-                },
-                childCount: 7,
-              ),
-            ),
+                      );
+                    } else {
+                      return Text('${snapshot.data}');
+                    }
+                  },
+                ),
+              )
+            ])),
           ),
+          // SliverPadding(
+          //     padding:
+          //         const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 60.0),
+          //     sliver:SliverToBoxAdapter(
+          //       child: StreamBuilder<QuerySnapshot>(
+          //       stream: FirebaseFirestore.instance.collection('expense').snapshots(),
+          //       builder: (context,snapshot){
+          //         if (snapshot.connectionState == ConnectionState.waiting) {
+          //                 return const Center(
+          //                   child: CircularProgressIndicator(),
+          //                 );
+          //               }
+          //         if(snapshot.hasError){
+          //           return const Text("Please Restart YOur App.", style: TextStyle(
+          //                     fontSize: 15,
+          //                     fontWeight: FontWeight.w500,
+          //                   ),);
+          //         }else if(snapshot.hasData){
+          //         final expenseData = snapshot.data!.docs;
+          //         return SliverList(
+          //         delegate: SliverChildBuilderDelegate(
+          //           (context, index) {
+          //             return Container(
+          //               margin: const EdgeInsets.only(bottom: 5.0),
+          //               padding: const EdgeInsets.all(10),
+          //               height: 80,
+          //               decoration: BoxDecoration(
+          //                 color: Colors.white,
+          //                 borderRadius: BorderRadius.circular(12),
+          //               ),
+          //               child: Row(
+          //                 children: [
+          //                   Container(
+          //                     height: 40,
+          //                     width: 40,
+          //                     decoration: const BoxDecoration(
+          //                         color: Colors.amber, shape: BoxShape.circle),
+          //                     child: icons[index],
+          //                   ),
+          //                   const SizedBox(width: 10),
+          //                   Expanded(
+          //                     child: Text(
+          //                       expenseData[index]["sub-category"],
+          //                       style: const TextStyle(
+          //                         fontWeight: FontWeight.bold,
+          //                         fontSize: 16,
+          //                         color: Colors.grey,
+          //                       ),
+          //                     ),
+          //                   ),
+          //                    Text('-${expenseData[index]["sub-category"]}'),
+          //                 ],
+          //               ),
+          //             );
+          //           },
+          //           childCount: expenseData.length,
+          //         ),
+          //       );
+          //       } else {
+          //                 return Text('${snapshot.data}');
+          //               }
+          //       },
+          //     ),
+
+          //     )
+
+          //   ),
         ],
       ),
     );

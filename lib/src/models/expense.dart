@@ -1,10 +1,10 @@
 import 'dart:core';
 
 class Expense {
-  String? amount;
+  int? amount;
   String? category;
   String? subCategory;
-  String? quntity;
+  int? quntity;
   String? date;
   String? note;
 

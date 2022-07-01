@@ -3,6 +3,7 @@ import 'package:expense/src/pages/analytics.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense/src/models/expense.dart';
 import 'package:expense/src/pages/setting.dart';
+import 'package:expense/src/resources/allData.dart';
 import 'package:expense/src/resources/config.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -38,11 +39,14 @@ class _AppState extends State<App> {
     const Setting(),
   ];
   final _catForm = GlobalKey<FormState>();
-  final currency = TextEditingController();
+  final amount = TextEditingController();
+  int? testAmount;
   final quntity = TextEditingController()..text = '1';
   final note = TextEditingController();
   final date = TextEditingController();
   late FocusNode amountFocusNode;
+  // planning ahead all amount
+  
 
   // DateTime now = DateTime.now();
   // DateFormat today = DateFormat('dd-MM-yyyy');
@@ -63,7 +67,7 @@ class _AppState extends State<App> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    currency.dispose();
+    amount.dispose();
     note.dispose();
     date.dispose();
     amountFocusNode.dispose();
@@ -75,7 +79,7 @@ class _AppState extends State<App> {
     _selectCategory = AppData.category[0];
     _subCategory = AppData.greyMaterial;
     _subSelectCategory = _subCategory[0];
-    currency.text = '';
+    amount.text = '';
     note.text = '';
     date.text = '';
     addBtn = 'Add';
@@ -189,13 +193,9 @@ class _AppState extends State<App> {
                                   .toUpperCase())),
                           Expanded(
                             child: TextFormField(
-                                controller: currency,
+                                controller: amount,
                                 focusNode: amountFocusNode,
                                 keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(13),
-                                  ThousandsFormatter(allowFraction: true)
-                                ],
                                 cursorColor: green,
                                 style: GoogleFonts.poppins(
                                     fontSize: 30, fontWeight: FontWeight.w400),
@@ -204,12 +204,16 @@ class _AppState extends State<App> {
                                         EdgeInsets.symmetric(horizontal: 10),
                                     hintText: "0",
                                     border: InputBorder.none),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter amount to add your expense.";
-                                  }
-                                  return null;
-                                }),
+                                    onChanged: (value){
+                                      testAmount = (value!="" ? int.parse(value):0);
+                                    },
+                                    validator: (vlaue){
+                                      if(vlaue!.isEmpty){
+                                        return "Please Enter Something";
+                                      }
+                                      return null;
+                                    },
+                                    ),
                           ),
                         ],
                       ),
@@ -463,10 +467,10 @@ class _AppState extends State<App> {
                                 setState(() {
                                   isLoading = true;
                                   final expense = Expense(
-                                      amount: currency.text,
+                                      amount: testAmount,
                                       category: _selectCategory,
                                       subCategory: _subSelectCategory,
-                                      quntity: quntity.text,
+                                      quntity: int.parse(quntity.text),
                                       date: date.text,
                                       note: note.text);
                                   addExpense(expense);
