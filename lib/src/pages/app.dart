@@ -3,15 +3,12 @@ import 'package:expense/src/pages/analytics.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense/src/models/expense.dart';
 import 'package:expense/src/pages/setting.dart';
-import 'package:expense/src/resources/allData.dart';
 import 'package:expense/src/resources/config.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:expense/src/pages/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pattern_formatter/numeric_formatter.dart';
 
 import 'home.dart';
 import '../resources/const.dart';
@@ -46,7 +43,6 @@ class _AppState extends State<App> {
   final date = TextEditingController();
   late FocusNode amountFocusNode;
   // planning ahead all amount
-  
 
   // DateTime now = DateTime.now();
   // DateFormat today = DateFormat('dd-MM-yyyy');
@@ -193,27 +189,28 @@ class _AppState extends State<App> {
                                   .toUpperCase())),
                           Expanded(
                             child: TextFormField(
-                                controller: amount,
-                                focusNode: amountFocusNode,
-                                keyboardType: TextInputType.number,
-                                cursorColor: green,
-                                style: GoogleFonts.poppins(
-                                    fontSize: 30, fontWeight: FontWeight.w400),
-                                decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    hintText: "0",
-                                    border: InputBorder.none),
-                                    onChanged: (value){
-                                      testAmount = (value!="" ? int.parse(value):0);
-                                    },
-                                    validator: (vlaue){
-                                      if(vlaue!.isEmpty){
-                                        return "Please Enter Something";
-                                      }
-                                      return null;
-                                    },
-                                    ),
+                              controller: amount,
+                              focusNode: amountFocusNode,
+                              keyboardType: TextInputType.number,
+                              cursorColor: green,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 30, fontWeight: FontWeight.w400),
+                              decoration: const InputDecoration(
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  hintText: "0",
+                                  border: InputBorder.none),
+                              onChanged: (value) {
+                                testAmount =
+                                    (value != "" ? int.parse(value) : 0);
+                              },
+                              validator: (vlaue) {
+                                if (vlaue!.isEmpty) {
+                                  return "Please Enter Something";
+                                }
+                                return null;
+                              },
+                            ),
                           ),
                         ],
                       ),
