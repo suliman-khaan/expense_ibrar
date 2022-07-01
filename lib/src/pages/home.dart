@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:expense/src/resources/allData.dart';
 import 'package:flutter/material.dart';
 
 import '../resources/config.dart';
@@ -40,6 +39,21 @@ class _HomeState extends State<Home> {
         color: Colors.white10,
       ),
     );
+  }
+
+  String dayText(int day) {
+    String text = '';
+    switch (day) {
+      case 0:
+        text = 'Today';
+        break;
+      case 1:
+        text = 'Tomorrow';
+        break;
+      default:
+        text = 'In a $day day';
+    }
+    return text;
   }
 
   @override
@@ -138,7 +152,7 @@ class _HomeState extends State<Home> {
                   bottom: 20,
                   child: Text(
                     "${currencyTester.switchCurrency().toUpperCase()}5785.55",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 27,
                     ),
@@ -150,7 +164,7 @@ class _HomeState extends State<Home> {
 
           // 2) Creating section title
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             sliver: SliverToBoxAdapter(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
@@ -181,7 +195,8 @@ class _HomeState extends State<Home> {
                     }
                     return SectionHeader(
                       title: "Planning Ahead",
-                      actionText: "${currencyTester.switchCurrency()} ${planningAmount.toString()}",
+                      actionText:
+                          "${currencyTester.switchCurrency()} ${planningAmount.toString()}",
                     );
                   } else {
                     return Text('${snapshot.data}');
@@ -201,7 +216,9 @@ class _HomeState extends State<Home> {
                     stream: FirebaseFirestore.instance
                         .collection('expense')
                         .where('date',
-                            isGreaterThanOrEqualTo: DateTime.now().toString())
+                            isGreaterThanOrEqualTo: DateTime.now()
+                                .subtract(const Duration(days: 1))
+                                .toString())
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -224,7 +241,8 @@ class _HomeState extends State<Home> {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             final expenseDate =
-                                DateTime.parse(expense[index]['date']);
+                                DateTime.parse(expense[index]['date'])
+                                    .add(const Duration(days: 1));
                             final today = DateTime.now();
                             final difference =
                                 expenseDate.difference(today).inDays;
@@ -258,7 +276,7 @@ class _HomeState extends State<Home> {
                                       ),
                                     ),
                                     Text(
-                                      "In a $difference days",
+                                      dayText(difference),
                                       style: TextStyle(
                                         color: Colors.grey.shade400,
                                         fontSize: 12,
@@ -343,7 +361,7 @@ class _HomeState extends State<Home> {
           ),
 */
           SliverPadding(
-            padding: EdgeInsets.only(left: 20.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             sliver: SliverList(
                 delegate: SliverChildListDelegate([
               SingleChildScrollView(
@@ -372,7 +390,7 @@ class _HomeState extends State<Home> {
                         transform: Matrix4.translationValues(0.0, -30.0, 0.0),
                         child: ListView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: expenseData.length,
                           itemBuilder: (context, index) {
                             return Container(
