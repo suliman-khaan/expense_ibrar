@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'src/resources/theme_provider.dart';
 
@@ -41,8 +42,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      themeMode: objTheme.currentTheme(),
-      theme: MyThemes.lightTheme,
+      themeMode: ThemeMode.light,
+      theme: ThemeData(textTheme: GoogleFonts.ralewayTextTheme()),
       darkTheme: MyThemes.darkTheme,
       initialRoute: 'index',
       routes: {
