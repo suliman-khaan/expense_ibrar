@@ -44,9 +44,6 @@ class _AppState extends State<App> {
   late FocusNode amountFocusNode;
   // planning ahead all amount
 
-  // DateTime now = DateTime.now();
-  // DateFormat today = DateFormat('dd-MM-yyyy');
-
   bool isLoading = false;
   bool isStretched = false;
   String addBtn = "Add";
@@ -115,7 +112,7 @@ class _AppState extends State<App> {
             onPressed: () => {
                   amountFocusNode.requestFocus(),
                   showModalBottomSheet(
-                    isDismissible: false,
+                    isDismissible: true,
                     // enableDrag: false,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
@@ -266,7 +263,7 @@ class _AppState extends State<App> {
                                     _subCategory = AppData.finishingMaterial;
                                     _subSelectCategory = _subCategory[0];
                                     break;
-                                  case 'Contactorr':
+                                  case 'Contractor':
                                     _subCategory = AppData.contractor;
                                     _subSelectCategory = _subCategory[0];
                                     break;

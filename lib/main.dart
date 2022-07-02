@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'src/resources/theme_provider.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       themeMode: ThemeMode.light,
-      theme: MyThemes.lightTheme,
+      theme: ThemeData(textTheme: GoogleFonts.ralewayTextTheme()),
       darkTheme: MyThemes.darkTheme,
       initialRoute: 'index',
       routes: {

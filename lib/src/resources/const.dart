@@ -2,7 +2,7 @@ class AppData {
   static List<String> category = [
     'Grey Structure Material',
     'Finishing Work Items',
-    'Contractor',
+    'Sub Contractor',
     'Item With Material'
   ];
   static List<String> greyMaterial = [
@@ -10,12 +10,11 @@ class AppData {
     'Crush',
     'Sand',
     'Steel',
-    'Cement',
     'Rori',
     'Kassu',
     'Electric Items',
     'Plumbing Items',
-    'Earthfil',
+    'Earthwork',
     'Brick Tile',
     'AC Pipe',
     'Bitumen',
@@ -27,7 +26,11 @@ class AppData {
     'Guard Salary',
     'Electric Bill',
     'Taxes',
-    'Random'
+    'Random',
+    'Steel Fixer',
+    'Labour Contract',
+    'Plumbing Cont Grey',
+    'Electric Cont Grey',
   ];
   static List<String> finishingMaterial = [
     'Electric Items',
@@ -39,25 +42,30 @@ class AppData {
     'Granite'
   ];
   static List<String> contractor = [
-    'Labour Contact',
-    'Electric Contact',
-    'Plumbing Contact',
-    'Tile Contact',
-    'Painting Contact',
-    'Polish Contact',
-    'Steel Fixer'
+    'Electric Cont Finishing',
+    'Plumbing Cont Finish',
+    'Tile Cont',
+    'Carpenter',
+    'Painting',
+    'Polish',
+    'Tools'
+        'Rental'
+        'Supervision'
+        'Transportation'
   ];
   static List<String> itemWithMaterial = [
     'False Ceiling',
     'Aluminum Windows',
     'Railings',
-    'Saftey Grius',
-    'Main Gate',
+    'Saftey Grills',
+    'Main Gate Steel',
     'Steel Stairs',
     'Wooden Floor',
     'Wall Paper',
     'Fire Place',
     'Other Items',
+    'Gaurd Salary',
+    'Electric Bill',
     'Taxes'
   ];
 }
