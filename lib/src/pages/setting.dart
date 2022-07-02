@@ -76,6 +76,9 @@ class _SettingState extends State<Setting> {
         .add(CurrencyPicker(countrySymbol: nigeria, selectedCurrency: false));
   }
 
+// forradiobutton
+  int? selectRadio;
+
   // for General:
   @override
   void initState() {
@@ -84,6 +87,7 @@ class _SettingState extends State<Setting> {
     CurrencyChanger.isCurrencySelect
         ? _controller.text = CurrencyChanger.textfieldData
         : _controller.text = "";
+    selectRadio = 0;
   }
 
   Widget forGeneral() {
@@ -97,7 +101,9 @@ class _SettingState extends State<Setting> {
             style: TextStyle(color: Colors.green),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              showThemeDialog(context);
+            },
             contentPadding: EdgeInsets.only(left: 10.0, right: 0.0),
             title: Text(
               "Theme",
@@ -362,6 +368,14 @@ class _SettingState extends State<Setting> {
     );
   }
 
+  // ftn for radiobuttons
+  setSelectedRadio(int val) {
+    setState(() {
+      selectRadio = val;
+    });
+  }
+  
+
   @override
   Widget build(BuildContext context) => Scaffold(
           body: SafeArea(
@@ -376,11 +390,9 @@ class _SettingState extends State<Setting> {
           // for DailyReminder
           forDailyReminder(),
           // for About
-          forAbout()
+          forAbout(),
         ],
       )));
-
-  
 
   // buildLogout()=>SettingsItem(
   // DialogBox
@@ -422,34 +434,35 @@ class _SettingState extends State<Setting> {
                           crossAxisCount: 4,
                           crossAxisSpacing: 4.0,
                           mainAxisSpacing: 8.0,
-                          children:
-                              List.generate(CurrencyChanger.testercurrency.length, (index) {
+                          children: List.generate(
+                              CurrencyChanger.testercurrency.length, (index) {
                             return TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  a = CurrencyChanger
-                                      .testercurrency[index].countrySymbol;
-                                  currencyTester.switchValue(a);
-                                  FocusScope.of(context).unfocus();
-                                  CurrencyChanger.isCurrencySelect = false;
-                                  _controller.clear();
-                                });
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: CurrencyChanger
-                                          .testercurrency[index].selectedCurrency
-                                      ? MaterialStateProperty.all<Color>(
-                                          Colors.grey)
-                                      : MaterialStateProperty.all<Color>(
-                                          Colors.transparent)),
-                              child: Text(
-                                CurrencyChanger.testercurrency[index].countrySymbol,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
-                              ));
+                                onPressed: () {
+                                  setState(() {
+                                    a = CurrencyChanger
+                                        .testercurrency[index].countrySymbol;
+                                    currencyTester.switchValue(a);
+                                    FocusScope.of(context).unfocus();
+                                    CurrencyChanger.isCurrencySelect = false;
+                                    _controller.clear();
+                                  });
+                                },
+                                style: ButtonStyle(
+                                    backgroundColor: CurrencyChanger
+                                            .testercurrency[index]
+                                            .selectedCurrency
+                                        ? MaterialStateProperty.all<Color>(
+                                            Colors.grey)
+                                        : MaterialStateProperty.all<Color>(
+                                            Colors.transparent)),
+                                child: Text(
+                                  CurrencyChanger
+                                      .testercurrency[index].countrySymbol,
+                                  style: TextStyle(fontSize: 16),
+                                ));
                           })),
                     ),
-                     SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
                     TextField(
@@ -461,9 +474,11 @@ class _SettingState extends State<Setting> {
                         setState(() {
                           CurrencyChanger.textfieldData = _controller.text;
                           a = _controller.text;
-                          for(var i =0;i<CurrencyChanger.testercurrency.length;i++){
+                          for (var i = 0;
+                              i < CurrencyChanger.testercurrency.length;
+                              i++) {
                             CurrencyChanger.testercurrency[i].selectedCurrency =
-                              false;
+                                false;
                           }
 
                           currencyTester.switchValue(a);
@@ -485,6 +500,54 @@ class _SettingState extends State<Setting> {
               ),
             );
           });
+        });
+  }
+
+  // show theme dialog
+  showThemeDialog(BuildContext context) {
+    return showDialog(
+      
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: ((context, setState) {
+              return SingleChildScrollView(
+                child: AlertDialog(
+                  title: Text("Theme"),
+                  content: Column(children: [
+                    RadioListTile(
+                        title: Text("Light"),
+                        value: 1,
+                        groupValue: selectRadio,
+                        onChanged: (val) {
+                          setState(() {
+                            setSelectedRadio(val as int);
+                            objTheme.switchTheme(val);
+                          });
+                        }),
+                    RadioListTile(
+                        title: Text("Dark"),
+                        value: 2,
+                        groupValue: selectRadio,
+                        onChanged: (val) {
+                          setState(() {
+                            setSelectedRadio(val as int);
+                            objTheme.switchTheme(val);
+                          });
+                        }),
+                  ]),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Ok"))
+                  ],
+                ),
+              );
+            
+            }),
+          );
         });
   }
 
