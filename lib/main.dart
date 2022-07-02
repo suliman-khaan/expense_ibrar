@@ -3,6 +3,7 @@ import 'package:expense/src/pages/app.dart';
 import 'package:expense/src/pages/home.dart';
 import 'package:expense/src/pages/profile.dart';
 import 'package:expense/src/pages/setting.dart';
+import 'package:expense/src/resources/config.dart';
 import 'package:flutter/material.dart';
 
 // ignore: depend_on_referenced_packages
@@ -17,8 +18,24 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState(){
+    super.initState();
+    objTheme.addListener(() {
+      print("Changes");
+      setState(() {
+        
+      });
+     });
+  }
 
   // This widget is the root of your application.
   @override

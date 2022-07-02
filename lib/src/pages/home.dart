@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // temrory random data 
+  int randomNumber = 7;
+
+
+
   final Color color1 = const Color.fromRGBO(124, 220, 149, 1);
   final Color color2 = const Color.fromRGBO(33, 207, 184, 1);
   final Color backgroundColor = const Color.fromRGBO(241, 240, 246, 1);
@@ -259,7 +266,7 @@ class _HomeState extends State<Home> {
                                         color: Colors.amber,
                                         shape: BoxShape.circle,
                                       ),
-                                      child: icons[index],
+                                      child: icons[Random().nextInt(randomNumber)],
                                     ),
                                     Text(
                                       "${currencyTester.switchCurrency().toUpperCase()} ${expense[index]['amount']}",
@@ -402,7 +409,7 @@ class _HomeState extends State<Home> {
                                     decoration: const BoxDecoration(
                                         color: Colors.amber,
                                         shape: BoxShape.circle),
-                                    child: icons[index],
+                                    child: icons[Random().nextInt(randomNumber)],
                                   ),
                                   const SizedBox(width: 10),
                                   Expanded(
